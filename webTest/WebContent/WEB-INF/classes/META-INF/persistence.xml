@@ -11,20 +11,21 @@
 
 		<!-- the JNDI data source -->
 <!-- 		<jta-data-source>java:/jdbc/test</jta-data-source> -->
-		<non-jta-data-source>jdbc/test</non-jta-data-source>
+<!-- 		<non-jta-data-source>jdbc/test</non-jta-data-source> -->
 
-
+		<class>webTest.entity.BaseEntity</class>
 		<class>webTest.entity.User</class>
+		<class>webTest.entity.Group</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/login" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/test" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="123456" />
+			<property name="javax.persistence.jdbc.password" value="" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 <!-- 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/> -->
 <!-- 			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.SunONETransactionManagerLookup" /> -->
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 		</properties>
 	</persistence-unit>
 
