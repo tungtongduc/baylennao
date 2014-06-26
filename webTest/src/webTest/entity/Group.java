@@ -8,7 +8,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="group")
+@Table(name="gruppe")
 public class Group extends BaseEntity{
 	
 	private static final long serialVersionUID = 1L;

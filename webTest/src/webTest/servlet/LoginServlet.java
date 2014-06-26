@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import webTest.dataConnection.DBconnecter;
+import webTest.dataConnection.UserDAO;
 import webTest.entity.User;
 
 import com.google.gson.Gson;
@@ -23,10 +23,9 @@ import com.google.gson.Gson;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private final static Logger LOGGER = Logger.getLogger(HelloServlet.class
-			.getName());
+	private final static Logger LOGGER = Logger.getLogger(HelloServlet.class.getName());
 	
-	private final DBconnecter db;
+	private final UserDAO db;
 	private final Gson gson;
 
 	/**
@@ -34,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-		db = new DBconnecter();
+		db = new UserDAO();
 		gson = new Gson();
 	}
 

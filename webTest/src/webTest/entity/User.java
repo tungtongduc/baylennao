@@ -16,6 +16,9 @@ public class User extends BaseEntity{
 
 	private String username;
 	private String password;
+	private String email;
+	private long telephone;
+	private int age;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="user_group")			  
@@ -38,6 +41,24 @@ public class User extends BaseEntity{
 	}
 	public void setGroups(List<Group> groups) {
 		this.groups = groups;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public long getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(long telephone) {
+		this.telephone = telephone;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
 }
