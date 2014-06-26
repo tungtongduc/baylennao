@@ -1,8 +1,6 @@
 package webTest.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import webTest.dataConnection.DBBaylennaoDAO;
-import webTest.entity.Group;
 import webTest.entity.User;
 
 /**
@@ -69,14 +66,9 @@ public class RegisterServlet extends HttpServlet {
 		} else if (user != null) {
 			response.sendRedirect("register?info=username");
 		} else {
-			Group g = new Group();
-			g.setName("comanche");
-			db.getGroupDAO().createGroup(g);
-			
 			User newUser = new User();
 			newUser.setUsername(username);
 			newUser.setPassword(password);
-			newUser.setGroups(new ArrayList<Group>(Arrays.asList(g)));
 			db.getUserDAO().createUser(newUser);
 			response.sendRedirect("register?info=success");
 		}
