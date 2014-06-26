@@ -8,6 +8,7 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<finalName>${project.groupId}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
