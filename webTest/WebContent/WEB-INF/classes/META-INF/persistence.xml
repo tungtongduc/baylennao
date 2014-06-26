@@ -13,7 +13,6 @@
 <!-- 		<jta-data-source>java:/jdbc/test</jta-data-source> -->
 		<non-jta-data-source>jdbc/test</non-jta-data-source>
 
-		<class>webTest.entity.BaseEntity</class>
 		<class>webTest.entity.User</class>
 		<class>webTest.entity.Group</class>
 		<properties>
