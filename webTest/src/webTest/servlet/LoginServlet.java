@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("login?error");
 		} else {
 			LOGGER.info(user.getGroups().get(0).getName());
-			response.sendRedirect("login?login");
+			response.sendRedirect("profile?username=" + username);
 		}
 	}
 
