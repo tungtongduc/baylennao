@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import webTest.dataConnection.GroupDAO;
-import webTest.dataConnection.UserDAO;
+import webTest.dataConnection.DBBaylennaoDAO;
 import webTest.entity.Group;
 import webTest.entity.User;
 
@@ -22,15 +21,13 @@ import webTest.entity.User;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final UserDAO userDao;
-	private final GroupDAO groupDao;
+	private final DBBaylennaoDAO db;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public RegisterServlet() {
 		super();
-		userDao = new UserDAO();
-		groupDao = new GroupDAO();
+		db = new DBBaylennaoDAO();
 	}
 
 	/**
@@ -65,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String repassword = request.getParameter("repassword");
-		User user = userDao.getUserByUsername(username);
+		User user = db.getUserDAO().getUserByUsername(username);
 
 		if (!password.equals(repassword)) {
 			response.sendRedirect("register?info=password");
@@ -74,13 +71,13 @@ public class RegisterServlet extends HttpServlet {
 		} else {
 			Group g = new Group();
 			g.setName("comanche");
-			groupDao.createGroup(g);
+			db.getGroupDAO().createGroup(g);
 			
 			User newUser = new User();
 			newUser.setUsername(username);
 			newUser.setPassword(password);
 			newUser.setGroups(new ArrayList<Group>(Arrays.asList(g)));
-			userDao.createUser(newUser);
+			db.getUserDAO().createUser(newUser);
 			response.sendRedirect("register?info=success");
 		}
 	}

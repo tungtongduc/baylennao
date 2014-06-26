@@ -1,7 +1,6 @@
 package webTest.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -11,10 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import webTest.dataConnection.UserDAO;
+import webTest.dataConnection.DBBaylennaoDAO;
 import webTest.entity.User;
-
-import com.google.gson.Gson;
 
 /**
  * Servlet implementation class LoginServlet
@@ -25,16 +22,14 @@ public class LoginServlet extends HttpServlet {
 
 	private final static Logger LOGGER = Logger.getLogger(HelloServlet.class.getName());
 	
-	private final UserDAO db;
-	private final Gson gson;
+	private final DBBaylennaoDAO db;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public LoginServlet() {
 		super();
-		db = new UserDAO();
-		gson = new Gson();
+		db = new DBBaylennaoDAO();
 	}
 
 	/**
@@ -69,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		User user = db.getUserByUsername(username);
+		User user = db.getUserDAO().getUserByUsername(username);
 		
 		
 		if(user == null || !password.equals(user.getPassword()) ) {

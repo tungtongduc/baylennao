@@ -2,15 +2,15 @@ package webTest.dataConnection;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import webTest.entity.Group;
-import webTest.entity.User;
 
 public class GroupDAO extends BaseDAO{
 	
-	public GroupDAO(){
-		super();
+	public GroupDAO(EntityManager em){
+		super(em);
 	}
 	
 	public void createGroup(Group group) {
