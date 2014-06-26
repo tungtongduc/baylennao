@@ -75,8 +75,8 @@ public class LoginServlet extends HttpServlet {
 		if(user == null || !password.equals(user.getPassword()) ) {
 			response.sendRedirect("login?error");
 		} else {
-			 PrintWriter out = response.getWriter(); 
-			 out.print(gson.toJson(user));
+			LOGGER.info(user.getGroups().get(0).getName());
+			response.sendRedirect("login?login");
 		}
 	}
 
