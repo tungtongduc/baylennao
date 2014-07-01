@@ -1,11 +1,13 @@
 package webTest.dataConnection;
 
 import java.util.List;
-
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TransactionRequiredException;
 
 import webTest.entity.User;
+import webTest.exception.DatabaseException;
 
 public class UserDAO extends BaseDAO{
 
@@ -13,12 +15,39 @@ public class UserDAO extends BaseDAO{
 		super(em);
 	}
 
-	public void createUser(User user) {
+	public void createUser(User user) throws DatabaseException {
 		em.getTransaction().begin();
-		em.persist(user);
+		boolean ok = false;
+		try{
+			em.persist(user);
+			em.getTransaction().commit();
+			ok = true;
+		}catch(EntityExistsException e){
+			throw new DatabaseException("User existed!");
+		}catch(TransactionRequiredException t){
+			throw new DatabaseException("can not connect with database! cased :"+ t.getMessage());
+		}catch(IllegalArgumentException i){
+			throw new DatabaseException("uncompatible Type. can not add object to database!");
+		}finally{
+			if(ok)
+				em.close();
+		}
+	}
+	
+	// TODO : Fehlerbehandlung
+	public void deleteUser(User user){
+		em.getTransaction().begin();
+		em.remove(user);
 		em.getTransaction().commit();
 	}
-
+	
+	// TODO : Fehlerbehandlung
+	public void updateUser(User user){
+		em.getTransaction().begin();
+		em.merge(user);
+		em.getTransaction().commit();
+	}
+	
 	public User getUserByID(long id) {
 		em.getTransaction().begin();
 		User user = em.find(User.class, id);

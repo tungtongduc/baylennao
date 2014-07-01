@@ -24,6 +24,10 @@ public class User extends BaseEntity{
 	@JoinTable(name="user_group")			  
 	private List<Group> groups;
 	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="user_poll")		
+	private List<Poll> polls;
+	
 	public String getUsername() {
 		return username;
 	}
