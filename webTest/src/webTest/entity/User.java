@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +29,17 @@ public class User extends BaseEntity{
 	@JoinTable(name="user_poll")		
 	private List<Poll> polls;
 	
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Zeitraum> zeitraums;
+	
+	private List<User> users;
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -63,6 +75,18 @@ public class User extends BaseEntity{
 	}
 	public void setAge(int age) {
 		this.age = age;
+	}
+	public List<Poll> getPolls() {
+		return polls;
+	}
+	public void setPolls(List<Poll> polls) {
+		this.polls = polls;
+	}
+	public List<Zeitraum> getZeitraums() {
+		return zeitraums;
+	}
+	public void setZeitraums(List<Zeitraum> zeitraums) {
+		this.zeitraums = zeitraums;
 	}
 	
 }

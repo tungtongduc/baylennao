@@ -1,6 +1,7 @@
 package webTest.dataConnection;
 
 import java.util.List;
+
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -34,18 +35,38 @@ public class UserDAO extends BaseDAO{
 		}
 	}
 	
-	// TODO : Fehlerbehandlung
-	public void deleteUser(User user){
+	public void deleteUser(User user) throws DatabaseException{
 		em.getTransaction().begin();
+		boolean ok = false;
+		try{
 		em.remove(user);
 		em.getTransaction().commit();
+		ok = true;
+		} catch (IllegalArgumentException i){
+			throw new DatabaseException("can not delete this user from database");
+		} catch(TransactionRequiredException t){
+			throw new DatabaseException(" there is no transaction");
+		}finally{
+			if(ok)
+				em.close();
+		}
 	}
 	
-	// TODO : Fehlerbehandlung
-	public void updateUser(User user){
+	public void updateUser(User user) throws DatabaseException{
 		em.getTransaction().begin();
-		em.merge(user);
-		em.getTransaction().commit();
+		boolean ok = false;
+		try {
+			em.merge(user);
+			em.getTransaction().commit();
+			ok = true;
+		} catch (IllegalArgumentException i) {
+			throw new DatabaseException("can not update this user to database");
+		} catch (TransactionRequiredException t ){
+			throw new DatabaseException("there is no transaction");
+		} finally {
+			if(ok)
+					em.close();
+		}			
 	}
 	
 	public User getUserByID(long id) {

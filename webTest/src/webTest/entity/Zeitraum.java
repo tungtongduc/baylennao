@@ -3,6 +3,8 @@ package webTest.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +14,12 @@ public class Zeitraum extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	private int dauerInMin;
 	private Date startZeitPunkt;	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Einladung einladung;
 
 	public int getDauerInMin() {
 		return dauerInMin;
@@ -28,7 +36,23 @@ public class Zeitraum extends BaseEntity{
 	public void setStartZeitPunkt(Date startZeitPunkt) {
 		this.startZeitPunkt = startZeitPunkt;
 	}
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Einladung getEinladung() {
+		return einladung;
+	}
+
+	public void setEinladung(Einladung einladung) {
+		this.einladung = einladung;
+	}
+
 	
 		
 }

@@ -4,9 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import webTest.enumClass.UmfrageType;
 
 @Entity
 @Table(name = "poll")
@@ -17,7 +22,13 @@ public class Poll extends BaseEntity{
 	private String name;
 	private String beschreibung;
 	private Date deadline;
+	
+	@Enumerated(EnumType.STRING)
+	private UmfrageType typ;
+	
+	@OneToOne(fetch = FetchType.LAZY)
 	private Wiederholung frequenz;
+	
 	private List<Zeitraum> moeglicheZeitraeume;
 	private Zeitraum ermittelterZeitraum;
 	
