@@ -1,8 +1,6 @@
 package webTest.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import webTest.dataConnection.DBBaylennaoDAO;
-import webTest.entity.Group;
 import webTest.entity.User;
-import webTest.exception.DatabaseException;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -63,28 +59,18 @@ public class RegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String repassword = request.getParameter("repassword");
-		
+		User user = db.getUserDAO().getUserByUsername(username);
 
 		if (!password.equals(repassword)) {
 			response.sendRedirect("register?info=password");
+		} else if (user != null) {
+			response.sendRedirect("register?info=username");
 		} else {
-			Group g = new Group();
-			g.setName("comanche");
-			db.getGroupDAO().createGroup(g);
-			
 			User newUser = new User();
 			newUser.setUsername(username);
 			newUser.setPassword(password);
-			newUser.setGroups(new ArrayList<Group>(Arrays.asList(g)));
-			
-			try {
-				db.getUserDAO().createUser(newUser);
-				response.sendRedirect("register?info=success");
-			} catch (DatabaseException e) {
-				response.sendRedirect("register?info=username");
-				e.printStackTrace();
-			}
-			
+			db.getUserDAO().createUser(newUser);
+			response.sendRedirect("register?info=success");
 		}
 	}
 

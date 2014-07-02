@@ -6,6 +6,20 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>ocean</id>
+			<url>http://maven.ocean.net.au/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<finalName>${project.groupId}</finalName>
