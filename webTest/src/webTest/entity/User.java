@@ -16,6 +16,12 @@ public class User extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
 	private String username;
+	public List<Poll> getUser_polls() {
+		return user_polls;
+	}
+	public void setUser_polls(List<Poll> user_polls) {
+		this.user_polls = user_polls;
+	}
 	private String password;
 	private String email;
 	private long telephone;
@@ -27,19 +33,11 @@ public class User extends BaseEntity{
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="user_poll")		
-	private List<Poll> polls;
+	private List<Poll> user_polls;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY,  mappedBy="user")
 	private List<Zeitraum> zeitraums;
 	
-	private List<User> users;
-	
-	public List<User> getUsers() {
-		return users;
-	}
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
 	public String getUsername() {
 		return username;
 	}
@@ -77,10 +75,10 @@ public class User extends BaseEntity{
 		this.age = age;
 	}
 	public List<Poll> getPolls() {
-		return polls;
+		return user_polls;
 	}
 	public void setPolls(List<Poll> polls) {
-		this.polls = polls;
+		this.user_polls = polls;
 	}
 	public List<Zeitraum> getZeitraums() {
 		return zeitraums;
@@ -88,5 +86,4 @@ public class User extends BaseEntity{
 	public void setZeitraums(List<Zeitraum> zeitraums) {
 		this.zeitraums = zeitraums;
 	}
-	
 }

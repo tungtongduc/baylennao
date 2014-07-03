@@ -8,13 +8,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "einladungl")
+@Table(name = "einladung")
 public class Einladung extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 	private boolean ignoriert = false;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="einladung")
 	private List<Zeitraum> zeitraums;
 	
 	public boolean isIgnoriert() {

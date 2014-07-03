@@ -21,7 +21,7 @@ public class Group extends BaseEntity{
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="group_poll")		
-	private List<Poll> polls;
+	private List<Poll> group_polls;
 	
 	public String getName() {
 		return name;

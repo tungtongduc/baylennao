@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import webTest.dataConnection.DBBaylennaoDAO;
+import webTest.dataConnection.DBManagementDAO;
 import webTest.entity.User;
+import webTest.servlet.HelloServlet;;
 
 /**
  * Servlet implementation class LoginServlet
@@ -22,14 +23,14 @@ public class LoginServlet extends HttpServlet {
 
 	private final static Logger LOGGER = Logger.getLogger(HelloServlet.class.getName());
 	
-	private final DBBaylennaoDAO db;
+	private final DBManagementDAO db;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public LoginServlet() {
 		super();
-		db = new DBBaylennaoDAO();
+		db = new DBManagementDAO();
 	}
 
 	/**

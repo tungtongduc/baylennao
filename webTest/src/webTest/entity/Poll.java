@@ -3,11 +3,13 @@ package webTest.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,19 +25,21 @@ public class Poll extends BaseEntity{
 	private String beschreibung;
 	private Date deadline;
 	
+	@Column(nullable = false, columnDefinition="enum default null")
 	@Enumerated(EnumType.STRING)
 	private UmfrageType typ;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	private Wiederholung frequenz;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "poll")
 	private List<Zeitraum> moeglicheZeitraeume;
-	private Zeitraum ermittelterZeitraum;
+//	private Zeitraum ermittelterZeitraum;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="polls")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="user_polls")
 	private List<User> users;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="polls")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="group_polls")
 	private List<Group> groups;
 	
 	public String getName() {
@@ -56,24 +60,5 @@ public class Poll extends BaseEntity{
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
-	public Wiederholung getFrequenz() {
-		return frequenz;
-	}
-	public void setFrequenz(Wiederholung frequenz) {
-		this.frequenz = frequenz;
-	}
-	public List<Zeitraum> getMoeglicheZeitraeume() {
-		return moeglicheZeitraeume;
-	}
-	public void setMoeglicheZeitraeume(List<Zeitraum> moeglicheZeitraeume) {
-		this.moeglicheZeitraeume = moeglicheZeitraeume;
-	}
-	public Zeitraum getErmittelterZeitraum() {
-		return ermittelterZeitraum;
-	}
-	public void setErmittelterZeitraum(Zeitraum ermittelterZeitraum) {
-		this.ermittelterZeitraum = ermittelterZeitraum;
-	}
-		
 	
 }

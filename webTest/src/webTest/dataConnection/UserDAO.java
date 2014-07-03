@@ -11,7 +11,7 @@ import webTest.entity.User;
 import webTest.exception.DatabaseException;
 
 public class UserDAO extends BaseDAO{
-
+	
 	public UserDAO(EntityManager em) {
 		super(em);
 	}

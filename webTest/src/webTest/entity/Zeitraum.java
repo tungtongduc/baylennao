@@ -16,8 +16,27 @@ public class Zeitraum extends BaseEntity{
 	private Date startZeitPunkt;	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	private Poll poll;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 	
+	public Poll getPoll() {
+		return poll;
+	}
+
+	public void setPoll(Poll poll) {
+		this.poll = poll;
+	}
+
+	public Einladung getEinladung() {
+		return einladung;
+	}
+
+	public void setEinladung(Einladung einladung) {
+		this.einladung = einladung;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Einladung einladung;
 
@@ -44,15 +63,4 @@ public class Zeitraum extends BaseEntity{
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public Einladung getEinladung() {
-		return einladung;
-	}
-
-	public void setEinladung(Einladung einladung) {
-		this.einladung = einladung;
-	}
-
-	
-		
 }

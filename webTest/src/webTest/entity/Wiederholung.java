@@ -1,5 +1,6 @@
 package webTest.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,12 +11,13 @@ import javax.persistence.Table;
 import webTest.enumClass.ZeitEinheit;
 
 @Entity
-@Table(name = "poll")
+@Table(name = "wiederholung")
 public class Wiederholung extends BaseEntity{
 	
 	private static final long serialVersionUID = 1L;
 	private int abstand;
 	
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ZeitEinheit zeiteinheit;
 	

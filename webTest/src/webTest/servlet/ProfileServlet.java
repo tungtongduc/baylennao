@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import webTest.dataConnection.DBBaylennaoDAO;
+import webTest.dataConnection.DBManagementDAO;
 import webTest.entity.User;
 
 /**
@@ -19,14 +19,14 @@ import webTest.entity.User;
 public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private final DBBaylennaoDAO db;
+	private final DBManagementDAO db;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ProfileServlet() {
         super();
-        db = new DBBaylennaoDAO();
+        db = new DBManagementDAO();
     }
 
 	/**
