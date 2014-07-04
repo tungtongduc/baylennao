@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import webTest.dataConnection.DBManagementDAO;
 import webTest.entity.Group;
 import webTest.entity.User;
-import webTest.exception.DatabaseException;
+import webTest.enumClass.TransactionEnum;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -75,16 +75,10 @@ public class RegisterServlet extends HttpServlet {
 			newUser.setGroups(new ArrayList<Group>(Arrays.asList(new Group())));
 			
 			try {
-				db.getUserDAO().createUser(newUser);
+				db.getUserDAO().execute(TransactionEnum.CREATE,newUser);
 				response.sendRedirect("register?info=success");
-			} catch (DatabaseException e) {
+			} catch (Exception e) {
 				response.sendRedirect("register?info=username");
-				e.printStackTrace();
-			}
-			
-			try {
-				db.getUserDAO().createUser(newUser);
-			} catch (DatabaseException e) {
 				e.printStackTrace();
 			}
 			response.sendRedirect("register?info=success");
