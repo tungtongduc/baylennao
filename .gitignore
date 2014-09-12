@@ -1,8 +1,5 @@
-webTest/.classpath
-webTest/target
-webTest/.settings
-webTest/.git
-webTest/.springBeans
-webTest/.gitignore
-webTest/.project
-webTest/pom.xml
+*/.classpath
+*/target
+*/.settings
+*/.springBeans
+*/.gitignore
