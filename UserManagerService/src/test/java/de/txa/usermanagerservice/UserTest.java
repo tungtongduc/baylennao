@@ -1,25 +1,22 @@
-package de.txa.web;
+package de.txa.usermanagerservice;
 
 import static org.junit.Assert.assertEquals;
-
-import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.txa.usermanager.dto.UserDTO;
-import de.txa.usermanager.dto.UserDTOtoCreate;
-import de.txa.usermanager.service.UserService;
+import de.txa.usermanagerservice.app.UserServiceFactory;
+import de.txa.usermanagerservice.dto.UserDTO;
+import de.txa.usermanagerservice.dto.UserDTOtoCreate;
+import de.txa.usermanagerservice.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/spring-conf.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml", })
+@ContextConfiguration( "classpath:META-INF/spring-conf.xml")
 public class UserTest {
 
-	@Inject
-	public UserService userService;
+	public UserService userService = UserServiceFactory.getUserService();
 
 	@Test
 	public void saveUser() {
@@ -53,12 +50,12 @@ public class UserTest {
 		userService.addFriend(user1.getId(), user2.getId());
 	}
 	
-	@Test
-	public void getAllFriend(){
-		UserDTO user1 = userService.findByName("xuan anh").get(0);
-		UserDTO tony = userService.getAllFriends(user1.getId()).get(0);
-		assertEquals("Tony ist Friend of Xuan Anh", "tony", tony.getName());
-	}
+//	@Test
+//	public void getAllFriend(){
+//		UserDTO user1 = userService.findByName("xuan anh").get(0);
+//		UserDTO tony = userService.getAllFriends(user1.getId()).get(0);
+//		assertEquals("Tony ist Friend of Xuan Anh", "tony", tony.getName());
+//	}
 
 	@Test
 	public void cleanDB() {
