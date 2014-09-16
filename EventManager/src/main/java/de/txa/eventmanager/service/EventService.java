@@ -1,8 +1,8 @@
-package service;
+package de.txa.eventmanager.service;
 
 import java.util.List;
 
-import dto.EventDTO;
+import de.txa.eventmanager.dto.EventDTO;
 
 public interface EventService {
 	public void create(EventDTO eventDTO);

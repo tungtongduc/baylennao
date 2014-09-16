@@ -1,20 +1,26 @@
-package serviceimpl;
+package de.txa.eventmanager.serviceimpl;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import service.EventDAO;
-import service.EventService;
-import dto.EventDTO;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import de.txa.eventmanager.dto.ConvertEvent;
+import de.txa.eventmanager.dto.EventDTO;
+import de.txa.eventmanager.service.EventDAO;
+import de.txa.eventmanager.service.EventService;
+
+@Component
+@Transactional
 public class EventServiceImpl implements EventService {
 	@Inject
 	private EventDAO eventDao;
 	
 	@Override
 	public void create(EventDTO eventDTO) {
-		eventDao.create(eventDTO);
+		eventDao.create(ConvertEvent.convertToEventEntity(eventDTO));
 	}
 
 	@Override
