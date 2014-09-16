@@ -3,7 +3,7 @@ package dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.EventEntity;
+import de.txa.eventmanager.entity.EventEntity;
 
 public class Convert {
 	public static EventDTO convertToEventDTO(EventEntity evententity) {
