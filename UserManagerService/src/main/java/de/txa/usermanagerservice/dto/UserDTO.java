@@ -7,19 +7,16 @@ public class UserDTO {
 	private Long id;
 	private String name;
 	private String email;
-	private long phone;
+	private Long phone;
 	private String address;
 	private Date birthday;
 	private String avatar;
+	private Boolean gender;
+	private Date createdOnDate;
+	private Date updatedOnDate;
 	
-	public UserDTO(String name, String email, long phone, String address,
-			Date birthday, String avatar) {
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		this.birthday = birthday;
-		this.avatar = avatar;
+	public UserDTO() {
+		
 	}
 	
 	public Long getId() {
@@ -42,10 +39,10 @@ public class UserDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
-	public void setPhone(long phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
 	public String getAddress() {
@@ -65,5 +62,29 @@ public class UserDTO {
 	}
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+
+	public Boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(Boolean gender) {
+		this.gender = gender;
+	}
+
+	public Date getCreatedOnDate() {
+		return createdOnDate;
+	}
+
+	public void setCreatedOnDate(Date createdOnDate) {
+		this.createdOnDate = createdOnDate;
+	}
+
+	public Date getUpdatedOnDate() {
+		return updatedOnDate;
+	}
+
+	public void setUpdatedOnDate(Date updatedOnDate) {
+		this.updatedOnDate = updatedOnDate;
 	}
 }
