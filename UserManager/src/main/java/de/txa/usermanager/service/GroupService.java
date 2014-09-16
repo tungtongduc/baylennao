@@ -8,6 +8,6 @@ public interface GroupService {
 	public void create(GroupDTO groupDTO);
 	public void delete(long id);
 	public void update(GroupDTO groupDTO);
-	public List<GroupDTO> findByName(String groupName);
+	public List<GroupDTO> findGroupByName(String groupName);
 	public GroupDTO findById(long id);
 }

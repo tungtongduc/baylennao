@@ -22,6 +22,10 @@ public class UserDTO {
 		this.avatar = avatar;
 	}
 	
+	public UserDTO(){
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}

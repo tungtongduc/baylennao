@@ -36,7 +36,7 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public List<GroupDTO> findByName(String groupName) {
+	public List<GroupDTO> findGroupByName(String groupName) {
 		return Convert.convertToListGroupDTO(groupDao.findGroupByName(groupName));
 	}
 

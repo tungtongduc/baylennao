@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import de.txa.usermanager.dto.UserDTOtoCreate;
 import de.txa.usermanager.service.UserService;
 
 /**

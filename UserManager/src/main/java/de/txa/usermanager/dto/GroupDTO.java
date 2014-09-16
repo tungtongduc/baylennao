@@ -5,6 +5,7 @@ public class GroupDTO {
 
 	public String group_name;
 	public String description;
+	public UserDTO host;
 	
 	public GroupDTO(String group_name, String description) {
 		super();
@@ -35,4 +36,13 @@ public class GroupDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public UserDTO getHost() {
+		return host;
+	}
+
+	public void setHost(UserDTO host) {
+		this.host = host;
+	}
+	
 }

@@ -19,7 +19,7 @@ public class GroupDAOImpl extends BaseDAOImpl<GroupEntity> implements GroupDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<GroupEntity> findGroupByName(String groupName) {
-		Query q = em.createQuery("SELECT g FROM GroupEntity g WHERE g.name=:groupName");
+		Query q = em.createQuery("SELECT g FROM GroupEntity g WHERE g.groupName=:groupName");
 		q.setParameter("groupName", groupName);
 		return (List<GroupEntity>) q.getResultList();
 	}
