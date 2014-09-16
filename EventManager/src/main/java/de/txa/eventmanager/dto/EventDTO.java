@@ -3,6 +3,8 @@ package de.txa.eventmanager.dto;
 import java.sql.Date;
 
 public class EventDTO {
+	
+	private Long id;
 	private String eventName;
 	private String eventContent;
 	private Date eventDate;
@@ -17,6 +19,21 @@ public class EventDTO {
 		this.eventDate = eventDate;
 		this.eventLocation = eventLocation;
 		this.eventIcon = eventIcon;
+	}
+	
+	public EventDTO(String eventName, String eventContent, String eventLocation){
+		super();
+		this.eventName = eventName;
+		this.eventContent = eventContent;
+		this.eventLocation = eventLocation;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEventName() {

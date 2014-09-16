@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.txa.eventmanager.dto.ConvertEvent;
 import de.txa.eventmanager.dto.EventDTO;
+import de.txa.eventmanager.entity.EventEntity;
 import de.txa.eventmanager.service.EventDAO;
 import de.txa.eventmanager.service.EventService;
 
@@ -24,27 +25,22 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void delete(EventDTO eventDTO) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Long id) {
+		eventDao.delete(id, EventEntity.class);
 	}
 
 	@Override
-	public void update(long id) {
-		// TODO Auto-generated method stub
-		
+	public void update(EventDTO eventDTO) {
+		eventDao.update(ConvertEvent.convertToEventEntity(eventDTO));
 	}
 
 	@Override
-	public List<EventDTO> findByEventName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<EventDTO> findByEventName(String eventname) {		
+		return ConvertEvent.convertToListEventDTO(eventDao.findByEventName(eventname));
 	}
 
 	@Override
 	public EventDTO findByEventID(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ConvertEvent.convertToEventDTO(eventDao.findById(id, EventEntity.class));
 	}
-	
 }

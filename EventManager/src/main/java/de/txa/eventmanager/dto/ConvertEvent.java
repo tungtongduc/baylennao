@@ -10,6 +10,7 @@ public class ConvertEvent {
 		final EventDTO eventDto = new EventDTO(evententity.getEventName(),
 				evententity.getEventContent(), evententity.getEventDate(),
 				evententity.getEventLocation(), evententity.getEventIcon());
+			eventDto.setId(evententity.getId());
 		return eventDto;
 	}
 
@@ -21,9 +22,14 @@ public class ConvertEvent {
 		}
 		return eventDTOList;
 	}
-	
-	//TODO
+		
 	public static EventEntity convertToEventEntity(EventDTO eventDTO) {
-		return null;
+		final EventEntity eventEntity = new EventEntity();
+		eventEntity.setEventName(eventDTO.getEventName());
+		eventEntity.setEventContent(eventDTO.getEventContent());
+		eventEntity.setEventDate(eventDTO.getEventDate());
+		eventEntity.setEventLocation(eventDTO.getEventLocation());
+		eventEntity.setEventIcon(eventDTO.getEventIcon());
+		return eventEntity;
 	}
 }
