@@ -41,22 +41,22 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<UserDTO> findByName(String userName) {
-		return Convert.convertListToListDTO(userDao.findByName(userName));
+		return Convert.convertToListUserDTO(userDao.findByName(userName));
 	}
 
 	@Override
 	public UserDTO findById(long id) {
-		return Convert.convertToDTO(userDao.findById(id, UserEntity.class));
+		return Convert.convertToUserDTO(userDao.findById(id, UserEntity.class));
 	}
 
 	@Override
 	public UserDTO findByEmail(String email) {
-		return Convert.convertToDTO(userDao.findByEmail(email));
+		return Convert.convertToUserDTO(userDao.findByEmail(email));
 	}
 
 	@Override
 	public List<UserDTO> getAllUser() {
-		return Convert.convertListToListDTO(userDao.getAllUsers());
+		return Convert.convertToListUserDTO(userDao.getAllUsers());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<UserDTO> getAllFriends(long idFromUser) {
-		return Convert.convertListToListDTO(userDao.getAllFriends(idFromUser));
+		return Convert.convertToListUserDTO(userDao.getAllFriends(idFromUser));
 	}
 
 	@Override
