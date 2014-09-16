@@ -1,4 +1,4 @@
-package dto;
+package de.txa.eventmanager.dto;
 
 import java.sql.Date;
 

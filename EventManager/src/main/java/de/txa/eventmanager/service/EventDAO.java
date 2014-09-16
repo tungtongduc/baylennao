@@ -1,6 +1,10 @@
 package de.txa.eventmanager.service;
 
+import java.util.List;
 
-public interface EventDAO{
+import de.txa.eventmanager.dto.EventDTO;
+import de.txa.eventmanager.entity.EventEntity;
 
+public interface EventDAO extends BaseDAO<EventEntity>{
+	public List<EventDTO> findByEventName(String eventname);
 }

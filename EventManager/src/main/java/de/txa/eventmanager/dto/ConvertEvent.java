@@ -1,11 +1,11 @@
-package dto;
+package de.txa.eventmanager.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.txa.eventmanager.entity.EventEntity;
 
-public class Convert {
+public class ConvertEvent {
 	public static EventDTO convertToEventDTO(EventEntity evententity) {
 		final EventDTO eventDto = new EventDTO(evententity.getEventName(),
 				evententity.getEventContent(), evententity.getEventDate(),
@@ -17,8 +17,13 @@ public class Convert {
 			List<EventEntity> eventlist) {
 		List<EventDTO> eventDTOList = new ArrayList<EventDTO>();
 		for(EventEntity evententity : eventlist){
-			eventDTOList.add(Convert.convertToEventDTO(evententity));
+			eventDTOList.add(ConvertEvent.convertToEventDTO(evententity));
 		}
 		return eventDTOList;
+	}
+	
+	//TODO
+	public static EventEntity convertToEventEntity(EventDTO eventDTO) {
+		return null;
 	}
 }

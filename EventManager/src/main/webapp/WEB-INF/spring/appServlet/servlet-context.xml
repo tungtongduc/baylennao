@@ -29,7 +29,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="de.txa" />
+	<context:component-scan base-package="de.txa.eventmanager" />
 
 	<context:annotation-config />
 
@@ -37,7 +37,7 @@
 	<beans:bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<beans:property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
-		<beans:property name="persistenceUnitName" value="userManager" />
+		<beans:property name="persistenceUnitName" value="eventManager" />
 		<beans:property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
 		<beans:property name="jpaDialect" ref="jpaDialect" />
 	</beans:bean>

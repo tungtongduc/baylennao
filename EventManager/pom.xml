@@ -16,11 +16,6 @@
 	</properties>
 	<dependencies>
 		<!-- usermanager -->
-		<dependency>
-			<groupId>de.txa</groupId>
-			<artifactId>usermanager</artifactId>
-			<version>1.0.0-BUILD-SNAPSHOT</version>
-		</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
