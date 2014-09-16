@@ -8,6 +8,7 @@ public class JoinInEntity extends BaseEntity{
 	private boolean accept;
 	@OneToOne
 	private UserEntity gast;
+	
 	public boolean isAccept() {
 		return accept;
 	}
