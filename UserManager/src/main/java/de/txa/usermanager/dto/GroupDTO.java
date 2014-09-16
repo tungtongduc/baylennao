@@ -2,7 +2,6 @@ package de.txa.usermanager.dto;
 
 public class GroupDTO {
 	public Long id;
-
 	public String group_name;
 	public String description;
 	public UserDTO host;
