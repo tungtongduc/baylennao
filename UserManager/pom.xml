@@ -172,6 +172,11 @@
 			<artifactId>spring-test</artifactId>
 			<version>4.0.6.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>de.txa</groupId>
+			<artifactId>usermanagerservice</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

@@ -5,15 +5,12 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import de.txa.usermanager.entity.UserEntity;
 import de.txa.usermanager.service.UserDAO;
 
 @Component
-@Transactional(propagation = Propagation.SUPPORTS)
 public class UserDAOImpl extends BaseDAOImpl<UserEntity> implements UserDAO {
 
 	@SuppressWarnings("unchecked")
@@ -30,7 +27,7 @@ public class UserDAOImpl extends BaseDAOImpl<UserEntity> implements UserDAO {
 		Query q = em
 				.createQuery("SELECT u FROM UserEntity u WHERE u.eMail=:email");
 		q.setParameter("email", email);
-
+		System.out.println(email);
 		return checkNullException(q);
 	}
 

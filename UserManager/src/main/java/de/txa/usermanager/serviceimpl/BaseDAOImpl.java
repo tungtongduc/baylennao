@@ -3,18 +3,22 @@ package de.txa.usermanager.serviceimpl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import de.txa.usermanager.service.BaseDAO;
 
-@Transactional(propagation = Propagation.SUPPORTS)
 public abstract class BaseDAOImpl<T> implements BaseDAO<T>{
 	
 	@PersistenceContext
 	protected EntityManager em;
 
 	
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
+
 	@Override
 	public void create(final T entity){
 			em.persist(entity);

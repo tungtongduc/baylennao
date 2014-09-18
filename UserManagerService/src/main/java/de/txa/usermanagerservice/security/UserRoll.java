@@ -1,4 +1,4 @@
-package de.txa.usermanager.entity;
+package de.txa.usermanagerservice.security;
 
 public enum UserRoll {
 	ADMIN, HOST, GAST

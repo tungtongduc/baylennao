@@ -1,10 +1,15 @@
 package de.txa.usermanager.dto;
 
+import javax.validation.constraints.NotNull;
+
 
 public class UserDTOtoCreate {
 	
+	@NotNull
 	private String name;
+	@NotNull
 	private String email;
+	@NotNull
 	private String password;
 
 	public UserDTOtoCreate(String name, String email, String password) {
@@ -13,6 +18,8 @@ public class UserDTOtoCreate {
 		this.email = email;
 		this.password = password;
 	}
+	
+	public UserDTOtoCreate() {}
 	
 	public String getName() {
 		return name;

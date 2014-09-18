@@ -4,26 +4,24 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
 
-public class UserServiceFactory {
+public class ServiceFactory {
 
 	private static final String DATASOURCE_DRIVER_CLASS = "com.mysql.jdbc.Driver";
 	private static final String DATASOURCE_URL = "jdbc:mysql://127.0.0.1:3306/test";
 	private static final String DATASOURCE_USERNAME = "root";
 	private static final String DATASOURCE_PASSWORD = "";
-	private final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	protected final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 	
-	private UserServiceFactory() {
+	protected ServiceFactory() {
 		setDataSource();
 	}
 	
-	public static UserServiceFactory getInstance() {
-		return new UserServiceFactory();
+	public static ServiceFactory getInstance() {
+		return new ServiceFactory();
 	}
 	
-	public UserService getUserService() {
-		final UserService userService = new UserService();
-		userService.setDataSource(dataSource);
-		return userService;
+	public static UserService getUserService() {
+		return new UserService();
 	}
 	
 	private void setDataSource() {

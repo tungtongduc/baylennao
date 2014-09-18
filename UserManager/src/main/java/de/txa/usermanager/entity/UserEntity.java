@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import de.txa.usermanagerservice.security.UserRoll;
+
 @Entity
 public class UserEntity extends BaseEntity{
 	

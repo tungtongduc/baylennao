@@ -158,6 +158,6 @@
     	<artifactId>parent</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>front_end</artifactId>
+    <artifactId>baylennao</artifactId>
     <name>baylennao</name>
 </project>
