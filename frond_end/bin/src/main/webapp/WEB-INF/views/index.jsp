@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +16,8 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="baylennao/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Bootstrap Core CSS -->
+    <link href="/baylennao/css/custome.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="baylennao/css/agency.css" rel="stylesheet">
@@ -70,6 +75,45 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
+
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/usermanager/"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    </c:if>
+
+                    <c:if test="${pageContext.request.userPrincipal.name == null}">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+                        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                            <form action="/usermanager/j_spring_security_check" method='POST' accept-charset="UTF-8">
+                                <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="j_username" required>
+                                <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="j_password" required>
+                                <input style="float: left; margin-right: 10px;" type="checkbox" name="_spring_security_remember_me" id="remember-me" value="1">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <label class="string optional" for="user_remember_me"> Remember me</label>
+                                <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                            </form>
+                             <label style="text-align:center;margin-top:5px">or</label>
+                            <button class="btn btn-primary btn-block" href="/usermanager/register">Sign Up</button>
+                        </div>
+                    </li>
+                    </c:if>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -609,8 +653,8 @@
     <script src="baylennao/js/cbpAnimatedHeader.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="baylennao/js/jqBootstrapValidation.js"></script>
-    <script src="baylennao/js/contact_me.js"></script>
+<!--      <script src="baylennao/js/jqBootstrapValidation.js"></script>
+     <script src="baylennao/js/contact_me.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
     <script src="baylennao/js/agency.js"></script>

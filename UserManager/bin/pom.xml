@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.txa</groupId>
+	<artifactId>usermanager</artifactId>
 	<name>UserManager</name>
-	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
 	<properties>
@@ -172,6 +172,11 @@
 			<artifactId>spring-test</artifactId>
 			<version>4.0.6.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>de.txa</groupId>
+			<artifactId>usermanagerservice</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
@@ -217,5 +222,5 @@
             </plugin>
         </plugins>
     </build>
-    <artifactId>usermanager</artifactId>
+    <packaging>war</packaging>
 </project>
