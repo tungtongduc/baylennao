@@ -90,6 +90,11 @@ public class HomeController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/baylennao", method = RequestMethod.GET)
+	public String baylennao(Model model) {
+		return "index";
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model) {
  

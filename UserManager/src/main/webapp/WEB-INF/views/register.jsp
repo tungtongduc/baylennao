@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="/baylennao">Bay Len Nao</a>
+                <a class="navbar-brand page-scroll" href="baylennao">Bay Len Nao</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,12 +42,23 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#news">News</a>
+                    
+                    <li><a href="/usermanager/register">Sign Up</a></li>
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+                        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                            <form action="j_spring_security_check" method='POST' accept-charset="UTF-8">
+                                <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="j_username" required>
+                                <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="j_password" required>
+                                <input style="float: left; margin-right: 10px;" type="checkbox" name="_spring_security_remember_me" id="remember-me" value="1">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <label class="string optional" for="user_remember_me"> Remember me</label>
+                                <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                            </form>
+                        </div>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">Fotogallery</a>
-                    </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
