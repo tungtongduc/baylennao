@@ -34,7 +34,8 @@ public class UserEntity extends BaseEntity{
 	private List<GroupEntity> admin_Groups;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="friends", joinColumns=@JoinColumn(name="userId"), inverseJoinColumns=@JoinColumn(name="friendId"))
+	@JoinTable(name="friends", joinColumns=@JoinColumn(name="userId"), 
+								inverseJoinColumns=@JoinColumn(name="friendId"))
 	private List<UserEntity> isFriendOf;
 
 	public String getUsername() {

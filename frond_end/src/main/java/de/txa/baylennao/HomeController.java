@@ -103,11 +103,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register(Model model) {
+	public String register(Model model,
+			@RequestParam(value = "errorRegister", required = false) String errorRegister,
+			@RequestParam(value = "userExist", required = false) String userExist) {
  
 		if(istLogin()) {
 			return "redirect:/?newRegister";
 		}
+
+		if (errorRegister != null) {
+			model.addAttribute("error", "Invalid Register data");
+		}
+ 
+		if (userExist != null) {
+			model.addAttribute("error", "User email is existed. Choose another Email!");
+		}
+		
 		return "register";
 	}
 	
@@ -121,12 +132,18 @@ public class HomeController {
 				logger.error(fieldError.getField());
 			}
 		} else {
+			final UserDTO userDTO = userService.findByEmail(userDTOtoCreate.getEmail());
+			
+			if (userDTO != null && userDTO.getEmail() != null) {
+				return "redirect:/register?userExist";
+			}
+			
 			if(StringUtils.pathEquals(userDTOtoCreate.getPassword(), rePassword)) {
 				userService.create(userDTOtoCreate);
 				return "redirect:/login?registerSuceess";
 			}
 		}
-		return "register";
+		return "redirect:/register?errorRegister";
 	}
 	
 	private boolean istLogin() {

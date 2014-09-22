@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="baylennao">Bay Len Nao</a>
+                <a class="navbar-brand page-scroll" href="/baylennao">Bay Len Nao</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -52,7 +52,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${user.email} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/baylennao/"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="/baylennao/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -205,7 +205,7 @@
                   </table>
         </div>
         <div class="modal-footer">
-        	<a href="/baylennao/" class="btn btn-primary"> exit </a>
+        	<a href="/baylennao/profile" class="btn btn-primary"> exit </a>
         	<button type="submit" class="btn btn-primary">Save</button>
         	
         </div>

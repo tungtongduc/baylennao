@@ -30,12 +30,12 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T>{
 	}
 
 	@Override
-	public void delete(long id, Class<T> T) {
+	public void delete(Long id, Class<T> T) {
 		em.remove(em.merge(em.find(T, id)));
 	}
 
 	@Override
-	public T findById(long id, Class<T> T) {
+	public T findById(Long id, Class<T> T) {
 		T entity = (T) em.find(T, id);
 		return entity;
 	}

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="baylennao">Bay Len Nao</a>
+                <a class="navbar-brand page-scroll" href="/baylennao">Bay Len Nao</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -76,6 +77,9 @@
                         		<strong>   Register Form </strong>  
                             </div>
                             <div class="panel-body">
+                            	<c:if test="${not empty error}">
+									<div class="error">${error}</div>
+								</c:if>
                                 <form role="form" action="register/add" method='POST'>
 <br/>
 										 <div class="form-group input-group">

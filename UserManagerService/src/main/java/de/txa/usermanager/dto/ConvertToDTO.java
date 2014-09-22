@@ -9,6 +9,9 @@ import de.txa.usermanager.entity.UserEntity;
 public class ConvertToDTO {
 
 	public static UserDTO convertToUserDTO(UserEntity userentity) {
+		if(userentity == null) {
+			return null;
+		}
 		final UserDTO userDTO = new UserDTO(
 								userentity.getUsername(),
 								userentity.getEmail(), 
@@ -27,13 +30,18 @@ public class ConvertToDTO {
 		List<UserDTO> users = new ArrayList<UserDTO>();
 
 		for (UserEntity u : userlist) {
-			users.add(convertToUserDTO(u));
+			if(convertToUserDTO(u) != null) {
+				users.add(convertToUserDTO(u));
+			}
 		}
 
 		return users;
 	}
 
 	public static GroupDTO convertToGroupDTO(GroupEntity groupentity) {
+		if(groupentity == null) {
+			return null;
+		}
 		final GroupDTO groupDto = new GroupDTO(
 				groupentity.getGroupName(),
 				groupentity.getDescription());
@@ -46,7 +54,9 @@ public class ConvertToDTO {
 		List<GroupDTO> groups = new ArrayList<GroupDTO>();
 
 		for (GroupEntity g : grouplist) {
-			groups.add(ConvertToDTO.convertToGroupDTO(g));
+			if(ConvertToDTO.convertToGroupDTO(g) != null) {
+				groups.add(ConvertToDTO.convertToGroupDTO(g));
+			}
 		}
 
 		return groups;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -16,8 +15,7 @@ public class GroupEntity extends BaseEntity {
 	private String groupName;
 	private String description;
 	
-	@ManyToOne(fetch=FetchType.LAZY)	
-	@JoinColumn(name="adminId")
+	@ManyToOne(fetch=FetchType.LAZY)
 	private UserEntity groupAdmin;
 
 	@ManyToMany(fetch=FetchType.LAZY, mappedBy="groups")
