@@ -17,7 +17,7 @@
 
 	<!-- Spring Security -->
 	<s:http auto-config="true" use-expressions="true">
-		<s:intercept-url pattern="/profile" access="isAuthenticated()" />
+		<s:intercept-url pattern="/profile*" access="isAuthenticated()" />
 		<s:intercept-url pattern="/greeting" access="hasRole('ROLE_SHOP OWNER')" />
 
 		<!-- Custom login page -->

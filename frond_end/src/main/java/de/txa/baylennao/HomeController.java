@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import de.txa.usermanager.dto.UserDTO;
 import de.txa.usermanager.dto.UserDTOtoCreate;
 import de.txa.usermanager.service.UserService;
 
@@ -65,6 +66,12 @@ public class HomeController {
 			return "profile";
 		}
 		return "redirect:/login";
+	}
+	
+	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
+	public String updateUser(Model model, UserDTO userDTO, BindingResult result) {
+		userService.update(userDTO);
+		return "redirect:/profile";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

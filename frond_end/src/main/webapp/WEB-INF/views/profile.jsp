@@ -96,7 +96,7 @@
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center"> 
                 	<c:if test="${not empty user.avatar}">
-							<img alt="User Pic" src="${user.avata}" class="img-circle"> 
+							<img alt="User Pic" src="${user.avatar}" width="150" height="150" class="img-circle"> 
 					</c:if>
 					<c:if test="${empty user.avatar}">
 							<img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> 
@@ -130,7 +130,14 @@
                         <td>Gender</td>
                         <td>${user.gender}</td>
                       </tr>
-                     
+                      <tr>
+                        <td>Created in:</td>
+                        <td>${user.createdOnDate}</td>
+                      </tr>
+                      <tr>
+                        <td>Last updated:</td>
+                        <td>${user.updatedOnDate}</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -152,22 +159,22 @@
       </div>
     </div>
 
-<div class="modal" id="editProfile">
-<form action="#" method="POST">
-	<div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Profile edit</h3>
-          <p class=" text-info">${serverTime}</p>
-        </div>
-        <div class="modal-body">
+	<div class="modal" id="editProfile">
+	<form action="/baylennao/profile/update" method="POST">
+		<div class="modal-dialog">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h3 class="modal-title">Profile edit</h3>
+	          <p class=" text-info">${serverTime}</p>
+	        </div>
+	        <div class="modal-body">
           
                   <table class="table table-user-information">
                     <tbody>
                     	<input type="hidden" class="form-control" name="id" value="${user.id}" />
                       <tr>
                         <td>Email:</td>
-                        <td><input type="text" class="form-control" name="email" value="${user.email}${user.id}" /></td>
+                        <td><input type="text" class="form-control" name="email" value="${user.email}" /></td>
                       </tr>
                        <tr>
                         <td>Username:</td>
