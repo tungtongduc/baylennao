@@ -9,12 +9,17 @@ import de.txa.usermanager.entity.UserEntity;
 public class ConvertToDTO {
 
 	public static UserDTO convertToUserDTO(UserEntity userentity) {
-		final UserDTO userDTO = new UserDTO(userentity.getUsername(),
-				userentity.getEmail(), userentity.getTelNr(),
-				userentity.getAdress(), userentity.getBirthday(),
-				userentity.getUserIcon(), userentity.getGender(),
-				userentity.getCreatedOnDate(), userentity.getUpdatedOnDate());
-				userDTO.setId(userentity.getId());
+		final UserDTO userDTO = new UserDTO(
+								userentity.getUsername(),
+								userentity.getEmail(), 
+								userentity.getTelNr(),
+								userentity.getAdress(), 
+								userentity.getBirthday(),
+								userentity.getUserIcon(), 
+								userentity.getGender(),
+								userentity.getCreatedOnDate(), 
+								userentity.getUpdatedOnDate());
+		userDTO.setId(userentity.getId());
 		return userDTO;
 	}
 
@@ -29,7 +34,8 @@ public class ConvertToDTO {
 	}
 
 	public static GroupDTO convertToGroupDTO(GroupEntity groupentity) {
-		final GroupDTO groupDto = new GroupDTO(groupentity.getGroupName(),
+		final GroupDTO groupDto = new GroupDTO(
+				groupentity.getGroupName(),
 				groupentity.getDescription());
 		groupDto.setId(groupentity.getId());
 		return groupDto;

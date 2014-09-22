@@ -29,12 +29,10 @@ public class LoginService{
 		Query q = em.createQuery(SELECT + FROM_USERENTITY + WHERE_FILTER);
 		q.setParameter("email", email);
 		final List<UserEntity> result = q.getResultList();
-		UserEntity user = null;
-		if (!CollectionUtils.isEmpty(result)) {
-			user = result.get(FIST_ELEMENT);
+		if (CollectionUtils.isEmpty(result)) {
+			return null;
 		}
-		em.close();
-		return user;
+		return result.get(FIST_ELEMENT);
 	}
 
 }

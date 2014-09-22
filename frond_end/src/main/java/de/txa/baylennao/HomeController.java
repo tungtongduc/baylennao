@@ -40,7 +40,12 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model,
+	public String home(Model model) {
+		return "index";
+	}
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile(Locale locale, Model model,
 			@RequestParam(value = "newRegister", required = false) String newRegister) {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -88,11 +93,6 @@ public class HomeController {
 		}
 		
 		return "login";
-	}
-	
-	@RequestMapping(value = "/baylennao", method = RequestMethod.GET)
-	public String baylennao(Model model) {
-		return "index";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)

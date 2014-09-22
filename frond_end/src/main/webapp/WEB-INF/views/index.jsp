@@ -81,7 +81,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/usermanager/"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="/baylennao/"><i class="fa fa-fw fa-user"></i> Profile</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -101,7 +101,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
                         <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                            <form action="/usermanager/j_spring_security_check" method='POST' accept-charset="UTF-8">
+                            <form action="/baylennao/j_spring_security_check" method='POST' accept-charset="UTF-8">
                                 <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="j_username" required>
                                 <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="j_password" required>
                                 <input style="float: left; margin-right: 10px;" type="checkbox" name="_spring_security_remember_me" id="remember-me" value="1">
@@ -110,7 +110,7 @@
                                 <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
                             </form>
                              <label style="text-align:center;margin-top:5px">or</label>
-                            <button class="btn btn-primary btn-block" href="/usermanager/register">Sign Up</button>
+                            <button class="btn btn-primary btn-block" href="/baylennao/register">Sign Up</button>
                         </div>
                     </li>
                     </c:if>

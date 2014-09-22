@@ -21,8 +21,8 @@ public class UserDTO {
 
 	}
 
-	public UserDTO(String name, String email, long phone, String address,
-			Date birthday, String avatar, boolean gender, Date createdOnDate,
+	public UserDTO(String name, String email, Long phone, String address,
+			Date birthday, String avatar, Boolean gender, Date createdOnDate,
 			Date updatedOnDate) {
 		super();
 		this.name = name;
@@ -35,31 +35,7 @@ public class UserDTO {
 		this.createdOnDate = createdOnDate;
 		this.updatedOnDate = updatedOnDate;
 	}
-
-	public boolean isGender() {
-		return gender;
-	}
-
-	public void setGender(boolean gender) {
-		this.gender = gender;
-	}
-
-	public Date getCreatedOnDate() {
-		return createdOnDate;
-	}
-
-	public void setCreatedOnDate(Date createdOnDate) {
-		this.createdOnDate = createdOnDate;
-	}
-
-	public Date getUpdatedOnDate() {
-		return updatedOnDate;
-	}
-
-	public void setUpdatedOnDate(Date updatedOnDate) {
-		this.updatedOnDate = updatedOnDate;
-	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -84,11 +60,11 @@ public class UserDTO {
 		this.email = email;
 	}
 
-	public long getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
 
-	public void setPhone(long phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
 
@@ -115,7 +91,31 @@ public class UserDTO {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-	
+
+	public Boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(Boolean gender) {
+		this.gender = gender;
+	}
+
+	public Date getCreatedOnDate() {
+		return createdOnDate;
+	}
+
+	public void setCreatedOnDate(Date createdOnDate) {
+		this.createdOnDate = createdOnDate;
+	}
+
+	public Date getUpdatedOnDate() {
+		return updatedOnDate;
+	}
+
+	public void setUpdatedOnDate(Date updatedOnDate) {
+		this.updatedOnDate = updatedOnDate;
+	}
+
 	public UserEntity convertToUserEntity(UserEntity user) {
 		if(user == null) {
 			user = new UserEntity();
