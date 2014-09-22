@@ -21,8 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="de.txa.web" />
+	<context:component-scan base-package="de.txa.baylennao" />
 	
-	
-	
+	<beans:import resource="classpath*:META-INF/spring/userservice-context.xml"/>
 </beans:beans>

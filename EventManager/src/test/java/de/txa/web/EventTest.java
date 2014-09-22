@@ -11,7 +11,7 @@ import de.txa.eventmanager.dto.EventDTO;
 import de.txa.eventmanager.service.EventService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
+@ContextConfiguration({ "classpath:/META-INF/spring/eventservice-context.xml" })
 public class EventTest {
 
 	@Inject

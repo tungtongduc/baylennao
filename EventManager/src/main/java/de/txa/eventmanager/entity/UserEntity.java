@@ -6,6 +6,9 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class UserEntity extends BaseEntity{
+	
+	private static final long serialVersionUID = 1L;
+
 	private String email;
 	
 	@OneToOne(mappedBy="host", fetch=FetchType.LAZY) 

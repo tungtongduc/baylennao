@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:s="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/security 
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<s:global-method-security secured-annotations="enabled" />
+
+	<!-- Spring Security -->
+	<s:http auto-config="true" use-expressions="true">
+		<s:intercept-url pattern="/" access="isAuthenticated()" />
+		<s:intercept-url pattern="/greeting" access="hasRole('ROLE_SHOP OWNER')" />
+
+		<!-- Custom login page -->
+		<s:form-login login-page="/login" default-target-url="/"
+			authentication-failure-url="/login?error" />
+
+		<!-- Custom logout page -->
+		<s:logout logout-url="/logout" logout-success-url="/login?logout" />
+<!-- 		<s:remember-me data-source-ref="dataSource" /> -->
+	</s:http>
+
+	<!-- use custom provider -->
+	<beans:bean id="customUserDetailsService" scope="prototype"
+		class="de.txa.usermanager.security.CustomUserDetailsService" />
+
+	<beans:bean id="customAuthenticationProvider"
+		class="de.txa.usermanager.security.CustomAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="customUserDetailsService" />
+	</beans:bean>
+
+	<s:authentication-manager alias="authenticationManager">
+		<s:authentication-provider ref="customAuthenticationProvider" />
+	</s:authentication-manager>
+
+	<!-- Remember me!!! -->
+<!-- 	<beans:bean id="tokenRepository" -->
+<!-- 		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl"> -->
+<!-- 		<beans:property name="createTableOnStartup" value="false" /> -->
+<!-- 		<beans:property name="dataSource" ref="dataSource" /> -->
+<!-- 	</beans:bean> -->
+
+		<!-- Data source -->
+<!--     <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!--         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!--         <beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/test" /> -->
+<!--         <beans:property name="username" value="root" /> -->
+<!--         <beans:property name="password" value="" /> -->
+<!--     </beans:bean> -->
+</beans:beans>

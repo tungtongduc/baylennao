@@ -7,6 +7,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class EventEntity extends BaseEntity{
+	
+	private static final long serialVersionUID = 1L;
 	private String eventName;
 	private String eventContent;
 	private Date eventDate;

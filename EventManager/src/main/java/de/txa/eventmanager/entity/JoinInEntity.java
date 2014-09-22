@@ -5,6 +5,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class JoinInEntity extends BaseEntity{
+	
+	private static final long serialVersionUID = 1L;
 	private boolean accept;
 	@OneToOne
 	private UserEntity gast;
