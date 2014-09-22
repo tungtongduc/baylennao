@@ -6,8 +6,8 @@
 
 	<persistence-unit name="userManager">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>de.txa.usermanagerservice.entity.GroupEntity</class>
-		<class>de.txa.usermanagerservice.entity.UserEntity</class>
+		<class>de.txa.usermanager.entity.GroupEntity</class>
+		<class>de.txa.usermanager.entity.UserEntity</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/userManager" />

@@ -34,7 +34,6 @@ public class LoginService{
 			user = result.get(FIST_ELEMENT);
 		}
 		em.close();
-		emf.close();
 		return user;
 	}
 
