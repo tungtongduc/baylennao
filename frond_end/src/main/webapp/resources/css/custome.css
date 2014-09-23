@@ -20,7 +20,10 @@
 
 
 
-
+#login h4 , #register h4
+{
+    color: #555;
+}
 
 
 .form-signin

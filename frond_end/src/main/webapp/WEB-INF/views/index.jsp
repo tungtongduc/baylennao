@@ -99,12 +99,9 @@
 
                     <c:if test="${pageContext.request.userPrincipal.name == null}">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><strong class="caret"></strong></a>
-                        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
-                            <a data-toggle="modal" class="btn btn-primary btn-block" href="#login">login</a>
-                            <label style="text-align:center;margin-top:5px">or</label>
-                            <a data-toggle="modal" class="btn btn-primary btn-block" href="#login2">register</a>
-                        </div>
+                        <a data-toggle="modal" href="#login">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </a>
                     </li>
                     </c:if>
                 </ul>
@@ -123,59 +120,106 @@
                 <a href="#about" class="page-scroll btn btn-xl">Tell Me More</a>
             </div>
         </div>
-
-        <!-- ***** Login form ******* -->
-        <div class="modal" id="login">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                <h3 class="modal-title" style="color:black;">Chuan bi bay:</h3>
-                </div>
-                  <div class="modal-body">
-                    <div class="row">
-                        <div class="col-l-6 col-l-4 col-l-offset-4">
-                            <div class="account-wall">
-                                <img class="profile-img" src="http://cache.desktopnexus.com/thumbnails/50970-bigthumbnail.jpg"
-                                alt="">
-                                <form class="form-signin" action="/baylennao/j_spring_security_check" method='POST'>
-                                    <c:if test="${not empty error}">
-                                    <div class="error">${error}</div>
-                                </c:if>
-                                <c:if test="${not empty msg}">
-                                <div class="msg">${msg}</div>
-                            </c:if>
+<!-- ***** login form ******** -->
+<div class="modal" id="login">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Chuan bi bay:</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-l-6 col-l-4 col-l-offset-4">
+                    <div class="account-wall">
+                        <img class="profile-img" src="http://cache.desktopnexus.com/thumbnails/50970-bigthumbnail.jpg"
+                        alt="">
+                        <form class="form-signin" action="/baylennao/j_spring_security_check" method='POST'>
                             <input type="email" name="j_username" class="form-control" placeholder="Email" required min="3" max="15" autofocus />
                             <input type="password" name="j_password" class="form-control" placeholder="Password" required min="6" max="20" />
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">
-                                Sign in</button>
-                                <label class="checkbox pull-left">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                    <input type="checkbox" name="_spring_security_remember_me" value="remember-me" />
-                                    Remember me
-                                </label>
-                                <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-                            </form>
-                        </div>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                            <label class="checkbox pull-left">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <input type="checkbox" name="_spring_security_remember_me" value="remember-me" />Remember me
+                            </label>
+                            <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="register" class="text-center new-account">Create an account </a>
-            </div>
-          </div>
         </div>
+        <div class="modal-footer">
+          <a href="#register" data-toggle="modal" data-dismiss="modal" class="text-center new-account">Create an account </a>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- ***** login form ******** -->
 
-        <!-- **** Register form ***** -->
-        <div class="modal fade" id="login2">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" style="color:white;">Chuan bi bay:</h3>
-                    </div>
+<!-- ***** register form ******** -->
+<div class="modal" id="register">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Hay tham gia cung chung toi:</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+                
+            <div class="row  pad-top">
+                <div class="col-l-4 col-l-offset-4 col-l-6 col-l-offset-3 col-xs-10 col-xs-offset-1">
+                    <form role="form" action="register/add" method='POST'>
+                        <br/>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-circle-o-notch"  ></i></span>
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" />
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" required min="3" max="15" autofocus/>
+                        </div>
+                        <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                <input type="password" name="password" class="form-control" placeholder="Enter Password" required min="6" max="20" autofocus/>
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                            <input type="password" name="rePassword" class="form-control" placeholder="Retype Password" required min="6" max="20" autofocus/>
+                        </div>
+                     
+                        <button class="btn btn-success " type="submit">Register Me</button>
+                        <br /><br />
+                    </form>
                 </div>
-            </div>
+            </div> 
         </div>
-        <!-- **** Register form ***** -->
+        <div class="modal-footer">
+          Already Registered ?  <a data-toggle="modal" href="#login" data-dismiss="modal">Login here</a>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- ***** register form ******** -->
+
+<!-- ***** error modal dialog ***** -->
+<div class="modal" id="errorDialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Modal 1</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+          <!-- content hier -->
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn">Close</a>
+          <a href="#" class="btn btn-primary">Save changes</a>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- ***** error modal dialog ***** -->
     </header>
 
     <!-- Services Section -->
@@ -704,6 +748,14 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/baylennao/js/agency.js"></script>
+
+    <c:if test="${not empty isError}">
+        <script type="text/javascript">
+        $(window).load(function(){
+            $('#errorDialog').modal('show');
+        });
+        </script>
+    </c:if>
 
 </body>
 
