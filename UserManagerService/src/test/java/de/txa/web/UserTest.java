@@ -14,7 +14,7 @@ import de.txa.usermanager.dto.UserDTO;
 import de.txa.usermanager.dto.UserDTOtoCreate;
 import de.txa.usermanager.service.UserService;
 
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/META-INF/spring/userservice-context.xml" })
 public class UserTest {

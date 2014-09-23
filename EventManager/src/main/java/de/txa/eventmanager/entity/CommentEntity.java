@@ -3,7 +3,6 @@ package de.txa.eventmanager.entity;
 import java.sql.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 @Entity
 public class CommentEntity extends BaseEntity{
@@ -11,9 +10,7 @@ public class CommentEntity extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	private String commentContent;
 	private Date commentDate;
-	
-	@OneToOne
-	private UserEntity commentAutor;
+	private String userEmail;
 
 	public String getCommentContent() {
 		return commentContent;
@@ -31,11 +28,11 @@ public class CommentEntity extends BaseEntity{
 		this.commentDate = commentDate;
 	}
 
-	public UserEntity getCommentAutor() {
-		return commentAutor;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-	public void setCommentAutor(UserEntity commentAutor) {
-		this.commentAutor = commentAutor;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 }

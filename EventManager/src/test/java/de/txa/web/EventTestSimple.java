@@ -1,7 +1,9 @@
 package de.txa.web;
 
-import javax.inject.Inject;
 import static org.junit.Assert.assertEquals;
+
+import javax.inject.Inject;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,16 +14,17 @@ import de.txa.eventmanager.service.EventService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/META-INF/spring/eventservice-context.xml" })
-public class EventTest {
+public class EventTestSimple {
 
 	@Inject
 	private EventService es;
 
-//	@Test
+	@Test
 	public void saveEvent() {
 		EventDTO event = new EventDTO("baylennao",
 				"moi ban tre nho mang theo co? va Wiskey",
 				"Berlin TU Berlin Bibo");
+		event.setHostEmail("t@gmail.com");
 		es.create(event);
 	}
 	
@@ -29,10 +32,9 @@ public class EventTest {
 	public void findByName(){
 		EventDTO event = es.findByEventName("baylennao").get(0);
 		assertEquals("Bay len nao cac ban tre!!!", event.getEventName());
-		
 	}
 	
-	 @Test
+//	 @Test
 	 public void deleteEvent(){
 		 EventDTO event = es.findByEventName("baylennao").get(0);
 //		 Long i = event.getId();

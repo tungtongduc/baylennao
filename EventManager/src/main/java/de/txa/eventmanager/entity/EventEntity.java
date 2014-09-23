@@ -3,7 +3,6 @@ package de.txa.eventmanager.entity;
 import java.sql.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 @Entity
 public class EventEntity extends BaseEntity{
@@ -14,9 +13,7 @@ public class EventEntity extends BaseEntity{
 	private Date eventDate;
 	private String eventLocation;
 	private String eventIcon;
-	
-	@OneToOne
-	private UserEntity host;
+	private String hostEmail;
 
 	public String getEventName() {
 		return eventName;
@@ -58,11 +55,12 @@ public class EventEntity extends BaseEntity{
 		this.eventIcon = eventIcon;
 	}
 
-	public UserEntity getHost() {
-		return host;
+	public String getHostEmail() {
+		return hostEmail;
 	}
 
-	public void setHost(UserEntity host) {
-		this.host = host;
+	public void setHostEmail(String hostEmail) {
+		this.hostEmail = hostEmail;
 	}
+	
 }

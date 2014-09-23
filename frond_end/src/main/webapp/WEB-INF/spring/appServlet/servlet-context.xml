@@ -24,4 +24,5 @@
 	<context:component-scan base-package="de.txa.baylennao" />
 	
 	<beans:import resource="classpath*:META-INF/spring/userservice-context.xml"/>
+	<beans:import resource="classpath*:META-INF/spring/eventservice-context.xml"/>
 </beans:beans>

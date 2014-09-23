@@ -1,27 +1,27 @@
 package de.txa.eventmanager.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 @Entity
 public class JoinInEntity extends BaseEntity{
 	
 	private static final long serialVersionUID = 1L;
 	private boolean accept;
-	@OneToOne
-	private UserEntity gast;
+	private String userEmail;
 	
 	public boolean isAccept() {
 		return accept;
 	}
+	
 	public void setAccept(boolean accept) {
 		this.accept = accept;
 	}
-	public UserEntity getGast() {
-		return gast;
+
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setGast(UserEntity gast) {
-		this.gast = gast;
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
-	
 }

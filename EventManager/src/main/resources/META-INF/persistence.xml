@@ -7,8 +7,9 @@
 	<persistence-unit name="eventManager">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>de.txa.eventmanager.entity.EventEntity</class>
-		<class>de.txa.eventmanager.entity.UserEntity</class>
 		<class>de.txa.eventmanager.entity.JoinInEntity</class>
+		<class>de.txa.eventmanager.entity.CommentEntity</class>
+<!-- 		<class>de.txa.eventmanager.entity.UserEntity</class> -->
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/eventManager" />
@@ -19,5 +20,4 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
-
 </persistence>

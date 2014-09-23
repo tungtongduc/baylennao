@@ -6,6 +6,7 @@
 	<artifactId>event-manager-service</artifactId>
 	<name>EventManager</name>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	
 	<properties>

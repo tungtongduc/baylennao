@@ -1,5 +1,6 @@
 package de.txa.eventmanager.serviceimpl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -40,7 +41,17 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public EventDTO findByEventID(long id) {
+	public EventDTO findByEventID(Long id) {
 		return ConvertEvent.convertToEventDTO(eventDao.findById(id, EventEntity.class));
+	}
+
+	@Override
+	public List<EventDTO> findByUserId(Long id) {
+		return ConvertEvent.convertToListEventDTO(eventDao.findByUserId(id));
+	}
+
+	@Override
+	public List<EventDTO> findByDate(Date date) {
+		return ConvertEvent.convertToListEventDTO(eventDao.findByDate(date));
 	}
 }

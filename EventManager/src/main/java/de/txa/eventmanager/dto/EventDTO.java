@@ -10,6 +10,7 @@ public class EventDTO {
 	private Date eventDate;
 	private String eventLocation;
 	private String eventIcon;
+	private String hostEmail;
 
 	public EventDTO(String eventName, String eventContent, Date eventDate,
 			String eventLocation, String eventIcon) {
@@ -75,4 +76,13 @@ public class EventDTO {
 	public void setEventIcon(String eventIcon) {
 		this.eventIcon = eventIcon;
 	}
+
+	public String getHostEmail() {
+		return hostEmail;
+	}
+
+	public void setHostEmail(String hostEmail) {
+		this.hostEmail = hostEmail;
+	}
+	
 }
