@@ -18,6 +18,9 @@ import de.txa.usermanager.entity.UserRoll;
 public class CustomUserDetailsService implements UserDetailsService {
 
 	private final LoginService loginService = new LoginService();
+	
+	public CustomUserDetailsService() {
+	}
 
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		try {

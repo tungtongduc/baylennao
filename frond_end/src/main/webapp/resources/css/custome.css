@@ -18,15 +18,6 @@
 	border-color: #bce8f1;
 }
 
-body {
-	background: #eee !important;	
-}
-
-.wrapper {	
-	margin-top: 80px;
-  margin-bottom: 80px;
-}
-
 
 
 
@@ -74,6 +65,7 @@ body {
 }
 .account-wall
 {
+    color: black;
     margin-top: 20px;
     padding: 40px 0px 20px 0px;
     background-color: #f7f7f7;

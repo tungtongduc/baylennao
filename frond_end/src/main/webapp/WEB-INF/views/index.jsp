@@ -99,18 +99,11 @@
 
                     <c:if test="${pageContext.request.userPrincipal.name == null}">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-                        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                            <form action="/baylennao/j_spring_security_check" method='POST' accept-charset="UTF-8">
-                                <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="j_username" required>
-                                <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="j_password" required>
-                                <input style="float: left; margin-right: 10px;" type="checkbox" name="_spring_security_remember_me" id="remember-me" value="1">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                <label class="string optional" for="user_remember_me"> Remember me</label>
-                                <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
-                            </form>
-                             <label style="text-align:center;margin-top:5px">or</label>
-                            <button class="btn btn-primary btn-block" href="/baylennao/register">Sign Up</button>
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><strong class="caret"></strong></a>
+                        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
+                            <a data-toggle="modal" class="btn btn-primary btn-block" href="#login">login</a>
+                            <label style="text-align:center;margin-top:5px">or</label>
+                            <a data-toggle="modal" class="btn btn-primary btn-block" href="#login2">register</a>
                         </div>
                     </li>
                     </c:if>
@@ -130,6 +123,59 @@
                 <a href="#about" class="page-scroll btn btn-xl">Tell Me More</a>
             </div>
         </div>
+
+        <!-- ***** Login form ******* -->
+        <div class="modal" id="login">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" style="color:black;">Chuan bi bay:</h3>
+                </div>
+                  <div class="modal-body">
+                    <div class="row">
+                        <div class="col-l-6 col-l-4 col-l-offset-4">
+                            <div class="account-wall">
+                                <img class="profile-img" src="http://cache.desktopnexus.com/thumbnails/50970-bigthumbnail.jpg"
+                                alt="">
+                                <form class="form-signin" action="/baylennao/j_spring_security_check" method='POST'>
+                                    <c:if test="${not empty error}">
+                                    <div class="error">${error}</div>
+                                </c:if>
+                                <c:if test="${not empty msg}">
+                                <div class="msg">${msg}</div>
+                            </c:if>
+                            <input type="email" name="j_username" class="form-control" placeholder="Email" required min="3" max="15" autofocus />
+                            <input type="password" name="j_password" class="form-control" placeholder="Password" required min="6" max="20" />
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                Sign in</button>
+                                <label class="checkbox pull-left">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                    <input type="checkbox" name="_spring_security_remember_me" value="remember-me" />
+                                    Remember me
+                                </label>
+                                <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="register" class="text-center new-account">Create an account </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- **** Register form ***** -->
+        <div class="modal fade" id="login2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="color:white;">Chuan bi bay:</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- **** Register form ***** -->
     </header>
 
     <!-- Services Section -->
