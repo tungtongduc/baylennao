@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import de.txa.eventmanager.service.EventService;
 import de.txa.usermanager.dto.UserDTO;
 import de.txa.usermanager.dto.UserDTOtoCreate;
 import de.txa.usermanager.service.UserService;
@@ -33,6 +34,9 @@ public class HomeController {
 	
 	@Inject
 	private UserService userService;
+	
+	@Inject
+	private EventService eventService;
 	
 	private Authentication auth;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);

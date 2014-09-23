@@ -6,14 +6,11 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import de.txa.eventmanager.entity.EventEntity;
 import de.txa.eventmanager.service.EventDAO;
 
 @Component
-@Transactional(propagation = Propagation.SUPPORTS)
 public class EventDAOImpl extends BaseDAOImpl<EventEntity> implements EventDAO{
 
 	@SuppressWarnings("unchecked")

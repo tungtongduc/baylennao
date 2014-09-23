@@ -128,13 +128,13 @@
 		</dependency>
 		<dependency>
 			<groupId>de.txa.service</groupId>
-			<artifactId>event-manager-service</artifactId>
-			<version>1.0.0-BUILD-SNAPSHOT</version>
+			<artifactId>user-manager-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>de.txa.service</groupId>
-			<artifactId>user-manager-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>event-manager-service</artifactId>
+			<version>1.0.0-BUILD-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
     <build>

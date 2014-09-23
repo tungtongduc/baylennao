@@ -4,13 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import de.txa.eventmanager.service.BaseDAO;
 
 @Component
-@Transactional(propagation = Propagation.SUPPORTS)
 public abstract class BaseDAOImpl<T> implements BaseDAO<T>{
 	
 	@PersistenceContext(unitName="eventManager")

@@ -15,7 +15,7 @@ import de.txa.eventmanager.service.EventDAO;
 import de.txa.eventmanager.service.EventService;
 
 @Component
-@Transactional
+@Transactional("txEvent")
 public class EventServiceImpl implements EventService {
 	@Inject
 	private EventDAO eventDao;

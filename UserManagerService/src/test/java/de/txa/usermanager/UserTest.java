@@ -1,10 +1,9 @@
-package de.txa.web;
+package de.txa.usermanager;
 
 import static org.junit.Assert.assertEquals;
 
 import javax.inject.Inject;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

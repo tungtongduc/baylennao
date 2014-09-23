@@ -16,7 +16,7 @@ import de.txa.usermanager.service.UserDAO;
 import de.txa.usermanager.service.UserService;
 
 @Component
-@Transactional
+@Transactional("txUser")
 public class UserServiceImpl implements UserService{
 
 	@Inject

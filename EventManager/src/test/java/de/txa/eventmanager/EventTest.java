@@ -1,4 +1,4 @@
-package de.txa.web;
+package de.txa.eventmanager;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +14,7 @@ import de.txa.eventmanager.service.EventService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/META-INF/spring/eventservice-context.xml" })
-public class EventTestSimple {
+public class EventTest {
 
 	@Inject
 	private EventService es;

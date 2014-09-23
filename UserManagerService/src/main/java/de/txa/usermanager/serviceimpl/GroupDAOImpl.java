@@ -5,15 +5,12 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import de.txa.usermanager.entity.GroupEntity;
 import de.txa.usermanager.entity.UserEntity;
 import de.txa.usermanager.service.GroupDAO;
 
 @Component
-@Transactional(propagation = Propagation.SUPPORTS)
 public class GroupDAOImpl extends BaseDAOImpl<GroupEntity> implements GroupDAO{
 
 	private static final String SELECT = "SELECT g ";

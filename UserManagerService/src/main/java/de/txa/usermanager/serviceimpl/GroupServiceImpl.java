@@ -15,7 +15,7 @@ import de.txa.usermanager.service.GroupDAO;
 import de.txa.usermanager.service.GroupService;
 
 @Component
-@Transactional
+@Transactional("txUser")
 public class GroupServiceImpl implements GroupService{
 	
 	@Inject

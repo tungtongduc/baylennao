@@ -15,9 +15,9 @@
 	<context:component-scan base-package="de.txa.usermanager" />
 
 	<!-- JPA config -->
-	<beans:bean id="entityManagerFactory"
+	<beans:bean id="entityManagerFactoryUser"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<beans:property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml" />
+		<beans:property name="persistenceXmlLocation" value="classpath*:/META-INF/persistence.xml" />
 		<beans:property name="persistenceUnitName" value="userManager" />
 		<beans:property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
 		<beans:property name="jpaDialect" ref="jpaDialect" />
@@ -31,10 +31,11 @@
 
 	<beans:bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
 
-	<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<beans:property name="entityManagerFactory" ref="entityManagerFactory" />
+	<beans:bean id="transactionManagerUser" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<beans:property name="entityManagerFactory" ref="entityManagerFactoryUser" />
 		<beans:property name="jpaDialect" ref="jpaDialect" />
+		<beans:qualifier value="txUser"/>
 	</beans:bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven/>
 </beans:beans>
