@@ -2,6 +2,8 @@ package de.txa.usermanager.dto;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import de.txa.usermanager.entity.UserEntity;
 
 public class UserDTOtoCreate {
@@ -48,10 +50,11 @@ public class UserDTOtoCreate {
 	}
 
 	public UserEntity convertToUserEntity() {
+		final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		final UserEntity userentity = new UserEntity();
 		userentity.setUsername(name);
 		userentity.setEmail(email);
-		userentity.setPassword(password);
+		userentity.setPassword(passwordEncoder.encode(password));
 		return userentity;
 	}
 }

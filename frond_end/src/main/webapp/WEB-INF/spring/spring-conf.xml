@@ -33,15 +33,20 @@
 	<beans:bean id="customUserDetailsService" scope="prototype"
 		class="de.txa.usermanager.security.CustomUserDetailsService" />
 
-	<beans:bean id="customAuthenticationProvider"
-		class="de.txa.usermanager.security.CustomAuthenticationProvider">
-		<beans:property name="userDetailsService" ref="customUserDetailsService" />
-	</beans:bean>
-
+<!-- 	<beans:bean id="customAuthenticationProvider" -->
+<!-- 		class="de.txa.usermanager.security.CustomAuthenticationProvider"> -->
+<!-- 		<beans:property name="userDetailsService" ref="customUserDetailsService" /> -->
+<!-- 	</beans:bean> -->
+        
 	<s:authentication-manager alias="authenticationManager">
-		<s:authentication-provider ref="customAuthenticationProvider" />
+<!-- 		<s:authentication-provider ref="customAuthenticationProvider" /> -->
+		<s:authentication-provider user-service-ref="customUserDetailsService">
+            <s:password-encoder ref="passwordEncoder" />
+        </s:authentication-provider>
 	</s:authentication-manager>
 
+	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	
 	<!-- Remember me!!! -->
 <!-- 	<beans:bean id="tokenRepository" -->
 <!-- 		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl"> -->
