@@ -11,6 +11,5 @@ public interface EventDAO extends BaseDAO<EventEntity>{
 	public List<EventEntity> findByUserEmail(String userEmail);
 	public List<EventEntity> findByDate(Date date);
 	public JoinInEntity findInvite(String userEmail, Long EventId);
-	public List<EventEntity> getAllInvitedEvent(String userEmail);
-	public List<EventEntity> getAllEventsOfUser(String userEmail);
+	public List<EventEntity> getAllInvites(String userEmail);
 }
