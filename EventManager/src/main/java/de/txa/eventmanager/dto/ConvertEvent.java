@@ -11,6 +11,7 @@ public class ConvertEvent {
 				evententity.getEventContent(), evententity.getEventDate(),
 				evententity.getEventLocation(), evententity.getEventIcon());
 			eventDto.setId(evententity.getId());
+			eventDto.setHostEmail(evententity.getHostEmail());
 		return eventDto;
 	}
 
@@ -30,6 +31,7 @@ public class ConvertEvent {
 		eventEntity.setEventDate(eventDTO.getEventDate());
 		eventEntity.setEventLocation(eventDTO.getEventLocation());
 		eventEntity.setEventIcon(eventDTO.getEventIcon());
+		eventEntity.setHostEmail(eventDTO.getHostEmail());
 		return eventEntity;
 	}
 }
