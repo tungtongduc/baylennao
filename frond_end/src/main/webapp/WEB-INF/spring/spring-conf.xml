@@ -17,15 +17,15 @@
 
 	<!-- Spring Security -->
 	<s:http auto-config="true" use-expressions="true">
-		<s:intercept-url pattern="/profile*" access="isAuthenticated()" />
+		<s:intercept-url pattern="/profile/*" access="isAuthenticated()" />
 		<s:intercept-url pattern="/greeting" access="hasRole('ROLE_SHOP OWNER')" />
 
 		<!-- Custom login page -->
-		<s:form-login login-page="/login" default-target-url="/profile"
-			authentication-failure-url="/login?error" />
+		<s:form-login login-page="/login" default-target-url="/"
+			authentication-failure-url="/?loginFalue" />
 
 		<!-- Custom logout page -->
-		<s:logout logout-url="/logout" logout-success-url="/login?logout" />
+		<s:logout logout-url="/logout" logout-success-url="/?logoutSuccess" />
 <!-- 		<s:remember-me data-source-ref="dataSource" /> -->
 	</s:http>
 
