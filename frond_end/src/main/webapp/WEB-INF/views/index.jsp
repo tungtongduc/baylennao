@@ -60,7 +60,7 @@ pageEncoding="UTF-8"%>
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#news">News</a>
+                    <a class="page-scroll" href="#events">Events</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#portfolio">Fotogallery</a>
@@ -93,6 +93,7 @@ pageEncoding="UTF-8"%>
                         <li>
                             <a data-toggle="modal" href="#changePassword">
                                 <i class="fa fa-fw fa-gear"></i> 
+                                Change Password
                             </a>
                         </li>
                         <li class="divider">
@@ -224,13 +225,14 @@ pageEncoding="UTF-8"%>
                 </div>
                 
                   <div class="modal-body">
-                    <p class=" text-info">${serverTime}</p>
+                    <p class="text-info">${serverTime}</p>
                     <table class="table table-user-information">
                         <tbody>
                             <input type="hidden" class="form-control" name="id" value="${user.id}" />
                             <tr>
                                 <td>Email:</td>
                                 <td>${user.email}</td>
+                                <input type="hidden" name="email" value=${user.email}>
                             </tr>
                             <tr>
                                 <td>Username:</td>
@@ -342,7 +344,7 @@ pageEncoding="UTF-8"%>
     <!-- </c:if> -->
     <!-- change Password -->
     <div class="modal" id="changePassword">
-        <form action="" method="POST">
+        <form action="/baylennao/profile/changepassword" method="POST">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -350,15 +352,33 @@ pageEncoding="UTF-8"%>
                         <h4 class="modal-title">Change your password</h4>
                     </div>
                     <div class="modal-body">
+                        <div class="row">
+                            <div class="col-l-6 col-l-4 col-l-offset-4">
+                                <div class="account-wall">
+                                    <img class="profile-img" src= ${user.avatar} alt="">
+                                    <c:if test="${not empty loginFalue}">
+                                        <div class="error">Invalid username or password!
+                                        </div>
+                                    </c:if>
+                                    Old Password: 
+                                    <input type="password" class="form-control" name="old_password" placeholder="your old password">
+                                    New Password: 
+                                    <input type="password" class="form-control" name="new_password" placeholder="your new password">
+                                    Repassword: 
+                                    <input type="password" class="form-control" name="re_password" placeholder="repeat your new password">
+                                            
+                                </div>
+                            </div>
+                        </div>
                       <!-- content hier -->
-                        <br/><br/>
+                       <!--  <br/><br/>
                         Old Password: 
                         <input type="password" class="form-control" name="old_password" placeholder="your old password">
                         New Password: 
                         <input type="password" class="form-control" name="new_password" placeholder="your new password">
                         Repassword: 
                         <input type="password" class="form-control" name="re_password" placeholder="repeat your new password">
-                        <br/><br/>
+                        <br/><br/> -->
                     </div>
                     <div class="modal-footer">
                         <span class="pull-right">
@@ -396,43 +416,72 @@ pageEncoding="UTF-8"%>
     </div>
 </header>
 
-<!-- Services Section -->
-<section id="news">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Services</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+<!-- event Section -->
+    <section id="events">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="section-heading" style="margin-top: 0px; margin-bottom: 100px;">our events</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Round Icons</h4>
+                        <p class="text-muted">Graphic Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <img src="img/portfolio/startup-framework.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Startup Framework</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <img src="img/portfolio/treehouse.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Treehouse</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                        <img src="img/portfolio/golden.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Golden</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                        <img src="img/portfolio/escape.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Escape</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <img src="img/portfolio/dreams.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Dreams</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">E-Commerce</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Responsive Design</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Web Security</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
 <!-- Portfolio Grid Section -->
 <section id="portfolio" class="bg-light-gray">
