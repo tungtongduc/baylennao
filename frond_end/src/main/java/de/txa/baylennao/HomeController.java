@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import de.txa.eventmanager.service.EventService;
 import de.txa.usermanager.dto.UserDTO;
 import de.txa.usermanager.dto.UserDTOtoCreate;
+import de.txa.usermanager.security.LoginService;
 import de.txa.usermanager.service.UserService;
 
 /**
@@ -49,6 +50,10 @@ public class HomeController {
 			@RequestParam(value = "logoutSuccess", required = false) String logoutSuccess,
 			@RequestParam(value = "loginFalue", required = false) String loginFalue) {
 
+		if(istLogin()) {
+		    logger.info(auth.getName() + " ist in system!!");
+		    model.addAttribute("user", userService.findByEmail(auth.getName()));	
+		}
 		
 		if(loginFalue != null) {
 			model.addAttribute("loginFalue", "login falue");
@@ -86,7 +91,7 @@ public class HomeController {
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
 	public String updateUser(Model model, UserDTO userDTO, BindingResult result) {
 		userService.update(userDTO);
-		return "redirect:/profile";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -155,10 +160,26 @@ public class HomeController {
 			
 			if(StringUtils.pathEquals(userDTOtoCreate.getPassword(), rePassword)) {
 				userService.create(userDTOtoCreate);
-				return "redirect:/login?registerSuceess";
+				return "redirect:/?registerSuceess";
 			}
 		}
 		return "redirect:/register?errorRegister";
+	}
+	
+	//TODO
+	@RequestMapping(value="/profile/changepassword", method = RequestMethod.POST)
+	public String changePassword(Model model, 
+			@RequestParam(value = "old_password", required = true) String oldPassword,
+			@RequestParam(value = "new_password", required = true) String newPassword,
+			@RequestParam(value = "re_password", required = true) String rePassword){
+		if(!newPassword.equals(rePassword)){
+			return "redirect:/?changePasswordFailure";
+		}
+		
+		if(istLogin()){
+			
+		}
+		return null;
 	}
 	
 	private boolean istLogin() {

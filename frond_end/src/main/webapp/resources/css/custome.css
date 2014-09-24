@@ -18,7 +18,9 @@
 	border-color: #bce8f1;
 }
 
-
+.modal{
+    color: black;
+}
 
 #login h4 , #register h4
 {
@@ -68,7 +70,6 @@
 }
 .account-wall
 {
-    color: black;
     margin-top: 20px;
     padding: 40px 0px 20px 0px;
     background-color: #f7f7f7;
@@ -94,11 +95,13 @@
     border-radius: 50%;
 }
 .need-help
-{
+{   
+    color: black;
     margin-top: 10px;
 }
 .new-account
 {
+    color: green;
     display: block;
     margin-top: 10px;
 }
@@ -116,6 +119,9 @@
     margin-bottom: 0;
 }
 
+.dropdown-menu{
+    background-color: rgba(0,0,0, 0.6);
+}
 .dropdown-user {
     margin: 13px 0;
     padding: 5px;
