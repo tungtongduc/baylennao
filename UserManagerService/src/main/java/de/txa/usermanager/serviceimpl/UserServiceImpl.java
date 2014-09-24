@@ -95,4 +95,14 @@ public class UserServiceImpl implements UserService{
 		}
 		return false;
 	}
+
+	@Override
+	public void changePassword(String password, String email) {
+		final UserEntity user = userDao.findByEmail(email);
+		if(user != null) {
+			final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			user.setPassword(passwordEncoder.encode(password));
+			userDao.update(setUpdateDateForEntity(user));
+		}
+	}
 }

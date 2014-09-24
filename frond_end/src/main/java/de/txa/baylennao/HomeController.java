@@ -128,6 +128,7 @@ public class HomeController {
 		if(newPassword.equals(rePassword)){
 			if(istLogin()){
 				if(userService.checkPassswordBeforeChange(oldPassword, auth.getName())){
+					userService.changePassword(newPassword, auth.getName());
 					return "redirect:/?changePasswordSuccess";
 				}
 			}
