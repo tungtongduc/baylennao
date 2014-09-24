@@ -10,20 +10,20 @@ public class ConvertEvent {
 		final EventDTO eventDto = new EventDTO(evententity.getEventName(),
 				evententity.getEventContent(), evententity.getEventDate(),
 				evententity.getEventLocation(), evententity.getEventIcon());
-			eventDto.setId(evententity.getId());
-			eventDto.setHostEmail(evententity.getHostEmail());
+		eventDto.setId(evententity.getId());
+		eventDto.setHostEmail(evententity.getHostEmail());
 		return eventDto;
 	}
 
 	public static List<EventDTO> convertToListEventDTO(
 			List<EventEntity> eventlist) {
 		List<EventDTO> eventDTOList = new ArrayList<EventDTO>();
-		for(EventEntity evententity : eventlist){
+		for (EventEntity evententity : eventlist) {
 			eventDTOList.add(ConvertEvent.convertToEventDTO(evententity));
 		}
 		return eventDTOList;
 	}
-		
+
 	public static EventEntity convertToEventEntity(EventDTO eventDTO) {
 		final EventEntity eventEntity = new EventEntity();
 		eventEntity.setEventName(eventDTO.getEventName());
