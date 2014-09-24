@@ -73,14 +73,14 @@ public class HomeController {
 		final UserDTO userDTO = userService.findByEmail(userDTOtoCreate.getEmail());
 		
 		if (userDTO != null && userDTO.getEmail() != null) {
-			return "redirect:/?infoMessage=userExist";
+			return "redirect:/?registerInfo=userExist";
 		}
 		
 		if(StringUtils.pathEquals(userDTOtoCreate.getPassword(), rePassword)) {
 			userService.create(userDTOtoCreate);
-			return "redirect:/?infoMessage=registerSuceess";
+			return "redirect:/?loginInfo=registerSuceess";
 		}
-		return "redirect:/?infoMessage=errorRegister";
+		return "redirect:/?registerInfo=errorRegister";
 	}
 	
 	private boolean istLogin() {

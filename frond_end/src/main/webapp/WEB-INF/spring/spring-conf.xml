@@ -20,26 +20,21 @@
 		<s:intercept-url pattern="/profile/*" access="isAuthenticated()" />
 		<s:intercept-url pattern="/greeting" access="hasRole('ROLE_SHOP OWNER')" />
 
+		<s:remember-me services-ref="rememberMeServices"/>
+		 
 		<!-- Custom login page -->
 		<s:form-login login-page="/login" default-target-url="/"
-			authentication-failure-url="/?loginFalue" />
+			authentication-failure-url="/?loginInfo=loginFailue" />
 
 		<!-- Custom logout page -->
-		<s:logout logout-url="/logout" logout-success-url="/?logoutSuccess" />
-<!-- 		<s:remember-me data-source-ref="dataSource" /> -->
+		<s:logout logout-url="/logout" logout-success-url="/?infoMessage=logoutSuccess" />
 	</s:http>
 
 	<!-- use custom provider -->
 	<beans:bean id="customUserDetailsService" scope="prototype"
 		class="de.txa.usermanager.security.CustomUserDetailsService" />
-
-<!-- 	<beans:bean id="customAuthenticationProvider" -->
-<!-- 		class="de.txa.usermanager.security.CustomAuthenticationProvider"> -->
-<!-- 		<beans:property name="userDetailsService" ref="customUserDetailsService" /> -->
-<!-- 	</beans:bean> -->
         
 	<s:authentication-manager alias="authenticationManager">
-<!-- 		<s:authentication-provider ref="customAuthenticationProvider" /> -->
 		<s:authentication-provider user-service-ref="customUserDetailsService">
             <s:password-encoder ref="passwordEncoder" />
         </s:authentication-provider>
@@ -63,4 +58,19 @@
 <!--         <beans:property name="username" value="root" /> -->
 <!--         <beans:property name="password" value="" /> -->
 <!--     </beans:bean> -->
+
+	<beans:bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+        <beans:constructor-arg value="myAppKey"/>
+        <beans:constructor-arg ref="customUserDetailsService"/>
+        <beans:constructor-arg ref="tokenRepository"/>
+        <beans:property name="cookieName" value="remember-me"/>
+        <beans:property name="tokenLength" value="32"/>
+        <beans:property name="alwaysRemember" value="true" />
+        <beans:property name="parameter" value="remember-me-parameter"/>
+    </beans:bean>
+
+    <beans:bean id="tokenRepository"
+          class="org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl">
+    </beans:bean>
+	
 </beans:beans>

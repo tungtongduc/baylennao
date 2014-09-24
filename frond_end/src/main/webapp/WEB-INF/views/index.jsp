@@ -128,7 +128,7 @@ pageEncoding="UTF-8"%>
             <a href="#about" class="page-scroll btn btn-xl">Tell Me More</a>
         </div>
     </div>
-    <!-- <c:if test="${pageContext.request.userPrincipal.name == null}"> -->
+    <c:if test="${pageContext.request.userPrincipal.name == null}">
     <!-- ***** login form ******** -->
     <div class="modal" id="login">
         <div class="modal-dialog">
@@ -143,8 +143,12 @@ pageEncoding="UTF-8"%>
                             <div class="account-wall">
                                 <img class="profile-img" src="http://cache.desktopnexus.com/thumbnails/50970-bigthumbnail.jpg"
                                 alt="">
-                                <c:if test="${not empty loginFalue}">
+                                <c:if test="${param.loginInfo eq 'loginFailue'}">
                                     <div class="error">Invalid username or password!
+                                    </div>
+                                </c:if>
+                                <c:if test="${param.loginInfo eq 'registerSuceess'}">
+                                    <div class="msg">You have registed successful! You can log in now!
                                     </div>
                                 </c:if>
                                 <form class="form-signin" action="/baylennao/j_spring_security_check" method='POST'>
@@ -153,7 +157,7 @@ pageEncoding="UTF-8"%>
                                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                                     <label class="checkbox pull-left">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                        <input type="checkbox" name="_spring_security_remember_me" value="remember-me" />Remember me
+                                        <input type="checkbox" name="_spring_security_remember_me" value="remember-me-parameter" />Remember me
                                     </label>
                                     <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
                                 </form>
@@ -178,6 +182,14 @@ pageEncoding="UTF-8"%>
                   <h4 class="modal-title">Hay tham gia cung chung toi:</h4>
                 </div>
                 <div class="modal-body">
+                    <c:if test="${param.registerInfo eq 'userExist'}">
+                        <div class="error">User Email has been used! Choose another email!
+                        </div>
+                    </c:if>
+                    <c:if test="${param.registerInfo eq 'errorRegister'}">
+                        <div class="error">Invalid register data!!! Check data before senden!
+                        </div>
+                    </c:if>
                     <div class="row  pad-top">
                         <div class="col-l-4 col-l-offset-4 col-l-6 col-l-offset-3 col-xs-10 col-xs-offset-1">
                             <form role="form" action="/baylennao/register/add" method='POST'>
@@ -212,8 +224,8 @@ pageEncoding="UTF-8"%>
         </div>
     </div>
     <!-- ***** register form ******** -->
-    <!-- </c:if> -->
-    <!-- <c:if test="${pageContext.request.userPrincipal.name != null}"> -->
+    </c:if>
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
     <!-- **** profile for User ***** -->
     <div class="modal" id="editProfile">
         <form action="/baylennao/profile/update" method="POST">
@@ -341,7 +353,6 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
     </div>
-    <!-- </c:if> -->
     <!-- change Password -->
     <div class="modal" id="changePassword"><div class="modal-dialog">
         <div class="modal-content">
@@ -414,6 +425,7 @@ pageEncoding="UTF-8"%>
             </div>
         </form> -->
     </div>
+    </c:if>
 
     <!-- ***** info modal dialog ***** -->
     <div class="modal" id="infoDialog">
@@ -426,11 +438,25 @@ pageEncoding="UTF-8"%>
                 <div class="modal-body">
                   <!-- content hier -->
                     <br/><br/>
-                    <c:if test="${infoMessage eq 'logoutSuccess'}">
+                    <c:if test="${param.infoMessage eq 'logoutSuccess'}">
                         <div class="msg">You've been logged out successfully.
                         </div>
                     </c:if>
 
+                    <c:if test="${param.infoMessage eq 'profileUpdateSuccess'}">
+                        <div class="msg">You've been changged your profile successfully.
+                        </div>
+                    </c:if>
+
+                    <c:if test="${param.infoMessage eq 'changePasswordSuccess'}">
+                        <div class="msg">You've been changged your password successfully.
+                        </div>
+                    </c:if>
+
+                    <c:if test="${param.infoMessage eq 'changePasswordFailure'}">
+                        <div class="error">Change password is not successfully.
+                        </div>
+                    </c:if>
                     <br/><br/>
                 </div>
             </div>
@@ -994,15 +1020,17 @@ pageEncoding="UTF-8"%>
     <!-- Custom Theme JavaScript -->
     <script src="/baylennao/js/agency.js"></script>
 
-    <c:if test="${not empty infoMessage}">
+    <c:if test="${not empty param.infoMessage}">
+
         <script>
             $(window).load(function(){
                 $('#infoDialog').modal('show');
             });
         </script>
+
     </c:if>
 
-    <c:if test="${not empty loginFalue}">
+    <c:if test="${not empty param.loginInfo}">
         <script >
             $(window).load(function(){
                 $('#login').modal('show');
@@ -1010,5 +1038,12 @@ pageEncoding="UTF-8"%>
         </script>
     </c:if>
 
+    <c:if test="${not empty param.registerInfo}">
+        <script >
+            $(window).load(function(){
+                $('#register').modal('show');
+            });
+        </script>
+    </c:if>
 </body>
 </html>
