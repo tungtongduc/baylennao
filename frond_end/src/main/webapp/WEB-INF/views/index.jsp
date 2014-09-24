@@ -147,16 +147,16 @@ pageEncoding="UTF-8"%>
                                     <div class="error">Invalid username or password!
                                     </div>
                                 </c:if>
-                                    <form class="form-signin" action="/baylennao/j_spring_security_check" method='POST'>
-                                        <input type="email" name="j_username" class="form-control" placeholder="Email" required min="3" max="15" autofocus />
-                                        <input type="password" name="j_password" class="form-control" placeholder="Password" required min="6" max="20" />
-                                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                                        <label class="checkbox pull-left">
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                            <input type="checkbox" name="_spring_security_remember_me" value="remember-me" />Remember me
-                                        </label>
-                                        <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-                                    </form>
+                                <form class="form-signin" action="/baylennao/j_spring_security_check" method='POST'>
+                                    <input type="email" name="j_username" class="form-control" placeholder="Email" required min="3" max="15" autofocus />
+                                    <input type="password" name="j_password" class="form-control" placeholder="Password" required min="6" max="20" />
+                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                                    <label class="checkbox pull-left">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        <input type="checkbox" name="_spring_security_remember_me" value="remember-me" />Remember me
+                                    </label>
+                                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -218,56 +218,56 @@ pageEncoding="UTF-8"%>
     <div class="modal" id="editProfile">
         <form action="/baylennao/profile/update" method="POST">
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h4 class="modal-title">${user.name} edit profile</h4>
-                </div>
-                
-                  <div class="modal-body">
-                    <p class="text-info">${serverTime}</p>
-                    <table class="table table-user-information">
-                        <tbody>
-                            <input type="hidden" class="form-control" name="id" value="${user.id}" />
-                            <tr>
-                                <td>Email:</td>
-                                <td>${user.email}</td>
-                                <input type="hidden" name="email" value=${user.email}>
-                            </tr>
-                            <tr>
-                                <td>Username:</td>
-                                <td><input type="text" class="form-control" name="name" value="${user.name}" /></td>
-                            </tr>
-                            <tr>
-                                <td>Phone:</td>
-                                <td><input type="text" class="form-control" name="phone" value="${user.phone}" /></td>
-                            </tr>
-                            <tr>
-                                <td>Birthday</td>
-                                <td><input type="text" class="form-control" name="birthday" value="${user.birthday}" /></td>
-                            </tr>
-                            <tr>
-                                <td>Adress</td>
-                                <td><input type="text" class="form-control" name="address" value="${user.address}" /></td>
-                            </tr>
-                            <tr>
-                                <td>Gender</td>
-                                <td><input type="text" class="form-control" name="gender" value="${user.gender}" /></td>
-                            </tr>
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title">${user.name} edit profile</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <p class="text-info">${serverTime}</p>
+                        <table class="table table-user-information">
+                            <tbody>
+                                <input type="hidden" class="form-control" name="id" value="${user.id}" />
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>${user.email}</td>
+                                    <input type="hidden" name="email" value=${user.email}>
+                                </tr>
+                                <tr>
+                                    <td>Username:</td>
+                                    <td><input type="text" class="form-control" name="name" value="${user.name}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Phone:</td>
+                                    <td><input type="text" class="form-control" name="phone" value="${user.phone}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Birthday</td>
+                                    <td><input type="text" class="form-control" name="birthday" value="${user.birthday}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Adress</td>
+                                    <td><input type="text" class="form-control" name="address" value="${user.address}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Gender</td>
+                                    <td><input type="text" class="form-control" name="gender" value="${user.gender}" /></td>
+                                </tr>
 
-                            <tr>
-                                <td>Icon-URL</td>
-                                <td><input type="text" class="form-control" name="avatar" value="${user.avatar}" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>Icon-URL</td>
+                                    <td><input type="text" class="form-control" name="avatar" value="${user.avatar}" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                          <a data-toggle="modal" data-dismiss="modal" href="#profile" class="btn btn-primary"> exit </a>
+                          <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
-            <div class="modal-footer">
-              <a data-toggle="modal" data-dismiss="modal" href="#profile" class="btn btn-primary"> exit </a>
-              <button type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </div>
-        </div>
+            </div>
         </form>
     </div>
 
@@ -343,8 +343,39 @@ pageEncoding="UTF-8"%>
     </div>
     <!-- </c:if> -->
     <!-- change Password -->
-    <div class="modal" id="changePassword">
-        <form action="/baylennao/profile/changepassword" method="POST">
+    <div class="modal" id="changePassword"><div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row  pad-top">
+                    <div class="col-l-4 col-l-offset-4 col-l-6 col-l-offset-3 col-xs-10 col-xs-offset-1">
+                        <form role="form" action="/baylennao/profile/changepassword" method='POST'>
+                            <br/>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                <input type="password" name="old_password" class="form-control" placeholder="Old Password" required min="8" max="20" autofocus/>
+                            </div>
+
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                <input type="password" name="new_password" class="form-control" placeholder="New Password" required min="8" max="20" autofocus/>
+                            </div>
+
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                <input type="password" name="re_password" class="form-control" placeholder="Retype Password" required min="8" max="20" autofocus/>
+                            </div>
+
+                            <button class="btn btn-success " type="submit">Save</button>
+                            <br /><br />
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        <!-- <form action="/baylennao/profile/changepassword" method="POST">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -355,30 +386,21 @@ pageEncoding="UTF-8"%>
                         <div class="row">
                             <div class="col-l-6 col-l-4 col-l-offset-4">
                                 <div class="account-wall">
-                                    <img class="profile-img" src= ${user.avatar} alt="">
+                                    <img class="profile-img" src= "${user.avatar}" alt="user avatar">
                                     <c:if test="${not empty loginFalue}">
                                         <div class="error">Invalid username or password!
                                         </div>
                                     </c:if>
                                     Old Password: 
-                                    <input type="password" class="form-control" name="old_password" placeholder="your old password">
+                                    <input type="password" class="form-control" required min="3" max="15" name="old_password" placeholder="your old password">
                                     New Password: 
-                                    <input type="password" class="form-control" name="new_password" placeholder="your new password">
+                                    <input type="password" class="form-control" required min="3" max="15" name="new_password" placeholder="your new password">
                                     Repassword: 
-                                    <input type="password" class="form-control" name="re_password" placeholder="repeat your new password">
+                                    <input type="password" class="form-control" required min="3" max="15" name="re_password" placeholder="repeat your new password">
                                             
                                 </div>
                             </div>
                         </div>
-                      <!-- content hier -->
-                       <!--  <br/><br/>
-                        Old Password: 
-                        <input type="password" class="form-control" name="old_password" placeholder="your old password">
-                        New Password: 
-                        <input type="password" class="form-control" name="new_password" placeholder="your new password">
-                        Repassword: 
-                        <input type="password" class="form-control" name="re_password" placeholder="repeat your new password">
-                        <br/><br/> -->
                     </div>
                     <div class="modal-footer">
                         <span class="pull-right">
@@ -390,7 +412,7 @@ pageEncoding="UTF-8"%>
                     </div>
                 </div>
             </div>
-        </form>
+        </form> -->
     </div>
 
     <!-- ***** info modal dialog ***** -->
