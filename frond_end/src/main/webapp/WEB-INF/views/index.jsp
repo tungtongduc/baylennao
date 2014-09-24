@@ -75,19 +75,18 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
-
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
                      <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/baylennao/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="#profile"><i class="fa fa-fw fa-user"></i> Profile</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Create event</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                                <a href="#"><i class="fa fa-fw fa-gear"></i> Change password</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -134,6 +133,9 @@
                     <div class="account-wall">
                         <img class="profile-img" src="http://cache.desktopnexus.com/thumbnails/50970-bigthumbnail.jpg"
                         alt="">
+                        <c:if test="${not empty loginFalue}">
+                            <div class="error">Invalid username and password!</div>
+                        </c:if>
                         <form class="form-signin" action="/baylennao/j_spring_security_check" method='POST'>
                             <input type="email" name="j_username" class="form-control" placeholder="Email" required min="3" max="15" autofocus />
                             <input type="password" name="j_password" class="form-control" placeholder="Password" required min="6" max="20" />
@@ -201,16 +203,151 @@
 </div>
 <!-- ***** register form ******** -->
 
-<!-- ***** error modal dialog ***** -->
-<div class="modal" id="errorDialog">
+<c:if test="${pageContext.request.userPrincipal.name != null}">
+<!-- **** profile for User ***** -->
+<div class="modal" id="editProfile">
+<form action="/baylennao/profile/update" method="POST">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Modal 1</h4>
+          <h4 class="modal-title">${user.name} edit profile</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+            <p class=" text-info">${serverTime}</p>
+            <table class="table table-user-information">
+                <tbody>
+                    <input type="hidden" class="form-control" name="id" value="${user.id}" />
+                    <tr>
+                        <td>Email:</td>
+                        <td>${user.email}</td>
+                    </tr>
+                    <tr>
+                        <td>Username:</td>
+                        <td><input type="text" class="form-control" name="name" value="${user.name}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td><input type="text" class="form-control" name="phone" value="${user.phone}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Birthday</td>
+                        <td><input type="text" class="form-control" name="birthday" value="${user.birthday}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Adress</td>
+                        <td><input type="text" class="form-control" name="address" value="${user.address}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td><input type="text" class="form-control" name="gender" value="${user.gender}" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>Icon-URL</td>
+                        <td><input type="text" class="form-control" name="avatar" value="${user.avatar}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <a data-toggle="modal" data-dismiss="modal" href="#profile" class="btn btn-primary"> exit </a>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+</form>
+</div>
+
+<div class="modal" id="profile">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">${user.name} profile</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+            <p class=" text-info">${serverTime}</p>    
+            <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> 
+                    <c:if test="${not empty user.avatar}">
+                        <img alt="User Pic" src="${user.avatar}" width="150" height="150" class="img-circle"> 
+                    </c:if>
+                    <c:if test="${empty user.avatar}">
+                        <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> 
+                    </c:if>
+                </div>
+                
+                <div class=" col-md-9 col-lg-9 "> 
+                    <table class="table table-user-information">
+                        <tbody>
+                            <tr>
+                                <td>Email:</td>
+                                <td>${user.email}</td>
+                            </tr>
+                            <tr>
+                                <td>Username:</td>
+                                <td>${user.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone:</td>
+                                <td>${user.phone}</td>
+                            </tr>
+                            <tr>
+                                <td>Birthday</td>
+                                <td>${user.birthday}</td>
+                            </tr>
+                            <tr>
+                                <td>Adress</td>
+                                <td>${user.address}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>${user.gender}</td>
+                            </tr>
+                            <tr>
+                                <td>Created in:</td>
+                                <td>${user.createdOnDate}</td>
+                            </tr>
+                            <tr>
+                                <td>Last updated:</td>
+                                <td>${user.updatedOnDate}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <span class="pull-right">
+                <button data-toggle="modal" data-dismiss="modal" href="#editProfile" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
+            </span>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- **** profile for User ***** -->
+</c:if>
+
+
+<!-- ***** info modal dialog ***** -->
+<div class="modal" id="infoDialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Doi bay xin thong bao:</h4>
         </div><div class="container"></div>
         <div class="modal-body">
           <!-- content hier -->
+            <br/><br/>
+            <c:if test="${infoMessage eq 'logoutSuccess'}">
+                <div class="msg">You've been logged out successfully.</div>
+            </c:if>
+
+            <br/><br/>
         </div>
         <div class="modal-footer">
           <a href="#" data-dismiss="modal" class="btn">Close</a>
@@ -219,7 +356,7 @@
       </div>
     </div>
 </div>
-<!-- ***** error modal dialog ***** -->
+<!-- ***** info modal dialog ***** -->
     </header>
 
     <!-- Services Section -->
@@ -749,13 +886,24 @@
     <!-- Custom Theme JavaScript -->
     <script src="/baylennao/js/agency.js"></script>
 
-    <c:if test="${not empty isError}">
+    <c:if test="${not empty infoMessage}">
         <script type="text/javascript">
         $(window).load(function(){
-            $('#errorDialog').modal('show');
+            $('#infoDialog').modal('show');
+            // alert("dis nhau");
+            // $('#login').modal('show');
         });
         </script>
     </c:if>
+
+    <c:if test="${not empty loginFalue}">
+        <script type="text/javascript">
+        $(window).load(function(){
+            $('#login').modal('show');
+        });
+        </script>
+    </c:if>
+
 
 </body>
 

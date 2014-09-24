@@ -45,7 +45,18 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model,
+			@RequestParam(value = "logoutSuccess", required = false) String logoutSuccess,
+			@RequestParam(value = "loginFalue", required = false) String loginFalue) {
+
+		
+		if(loginFalue != null) {
+			model.addAttribute("loginFalue", "login falue");
+		}
+		if(logoutSuccess != null) {
+			model.addAttribute("infoMessage", "logoutSuccess");
+		}
+			
 		return "index";
 	}
 	
