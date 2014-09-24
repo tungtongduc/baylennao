@@ -31,7 +31,6 @@ import de.txa.usermanager.service.UserService;
 @Controller
 public class HomeController {
 	
-	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private UserService userService;
 	
@@ -134,10 +133,8 @@ public class HomeController {
 			if(istLogin()){
 				System.out.println("email from logged in User:  "+auth.getName());
 				if(userService.checkPassswordBeforeChange(oldPassword, auth.getName())){
-					if(userService.changePassword(newPassword, auth.getName())){
-						System.out.println("change pass success!!!!!");
-						return "redirect:/?changePasswordSuccess";
-					}
+					userService.changePassword(newPassword, auth.getName());
+					return "redirect:/?changePasswordSuccess";
 				}
 			}
 		}

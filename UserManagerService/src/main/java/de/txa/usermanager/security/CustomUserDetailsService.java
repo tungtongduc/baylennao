@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +19,8 @@ import de.txa.usermanager.entity.UserRoll;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private final LoginService loginService = new LoginService();
+	@Inject
+	private LoginService loginService;
 	
 	public CustomUserDetailsService() {
 	}

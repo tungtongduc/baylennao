@@ -47,6 +47,8 @@
 
 	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	
+	<beans:import resource="classpath*:META-INF/spring/userservice-context.xml"/>
+	<beans:import resource="classpath*:META-INF/spring/eventservice-context.xml"/>
 	<!-- Remember me!!! -->
 <!-- 	<beans:bean id="tokenRepository" -->
 <!-- 		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl"> -->
