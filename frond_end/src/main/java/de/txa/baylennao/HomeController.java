@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import de.txa.eventmanager.service.EventService;
 import de.txa.usermanager.dto.UserDTO;
 import de.txa.usermanager.dto.UserDTOtoCreate;
 import de.txa.usermanager.service.UserService;
@@ -32,11 +31,12 @@ import de.txa.usermanager.service.UserService;
 @Controller
 public class HomeController {
 	
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private UserService userService;
 	
-	@Inject
-	private EventService eventService;
+//	@Inject
+//	private EventService eventService;
 	
 	private Authentication auth;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -125,11 +125,19 @@ public class HomeController {
 			@RequestParam(value = "old_password", required = true) String oldPassword,
 			@RequestParam(value = "new_password", required = true) String newPassword,
 			@RequestParam(value = "re_password", required = true) String rePassword){
+		
 		if(newPassword.equals(rePassword)){
+			System.out.println(oldPassword);
+			System.out.println(newPassword);
+			System.out.println(rePassword);
+			
 			if(istLogin()){
+				System.out.println("email from logged in User:  "+auth.getName());
 				if(userService.checkPassswordBeforeChange(oldPassword, auth.getName())){
-					userService.changePassword(newPassword, auth.getName());
-					return "redirect:/?changePasswordSuccess";
+					if(userService.changePassword(newPassword, auth.getName())){
+						System.out.println("change pass success!!!!!");
+						return "redirect:/?changePasswordSuccess";
+					}
 				}
 			}
 		}

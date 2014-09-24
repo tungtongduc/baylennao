@@ -25,7 +25,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		try {
 			UserEntity user = loginService.getUser(email);
-			System.out.println("Clgt ! Da tim thay user: " + user.getUsername());
 			boolean enabled = true;
 			boolean accountNonExpired = true;
 			boolean credentialsNonExpired = true;
