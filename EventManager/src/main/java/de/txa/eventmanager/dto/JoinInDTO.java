@@ -23,6 +23,9 @@ public class JoinInDTO {
 		this.createdOnDate = createdOnDate;
 		this.updatedOnDate = updatedOnDate;
 	}
+	
+	public JoinInDTO(){
+	}
 
 	public Long getId() {
 		return id;
