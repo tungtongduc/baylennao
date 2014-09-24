@@ -1,6 +1,9 @@
 package de.txa.eventmanager.dto;
 
 import java.sql.Date;
+import java.util.List;
+
+import de.txa.eventmanager.entity.EventEntity;
 
 public class EventDTO {
 	
@@ -11,10 +14,14 @@ public class EventDTO {
 	private String eventLocation;
 	private String eventIcon;
 	private String hostEmail;
+	private List<JoinInDTO> invites;
 
-	public EventDTO(String eventName, String eventContent, Date eventDate,
+	public EventDTO(){}
+	
+	public EventDTO(Long id, String eventName, String eventContent, Date eventDate,
 			String eventLocation, String eventIcon) {
 		super();
+		this.id = id;
 		this.eventName = eventName;
 		this.eventContent = eventContent;
 		this.eventDate = eventDate;
@@ -84,5 +91,25 @@ public class EventDTO {
 	public void setHostEmail(String hostEmail) {
 		this.hostEmail = hostEmail;
 	}
-	
+
+	public List<JoinInDTO> getInvites() {
+		return invites;
+	}
+
+	public void setInvites(List<JoinInDTO> invites) {
+		this.invites = invites;
+	}
+
+	public EventEntity convertToEventEntity() {
+		final EventEntity eventEntity = new EventEntity();
+		eventEntity.setId(id);
+		eventEntity.setEventName(eventName);
+		eventEntity.setEventContent(eventContent);
+		eventEntity.setEventDate(eventDate);
+		eventEntity.setEventLocation(eventLocation);
+		eventEntity.setEventIcon(eventIcon);
+		eventEntity.setHostEmail(hostEmail);
+		eventEntity.setInvites(JoinInDTO.convertToListEntity(invites));
+		return eventEntity;
+	}
 }

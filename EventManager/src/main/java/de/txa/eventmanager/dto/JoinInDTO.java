@@ -1,6 +1,8 @@
 package de.txa.eventmanager.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import de.txa.eventmanager.entity.JoinInEntity;
 
@@ -69,5 +71,13 @@ public class JoinInDTO {
 		joinInEntity.setUserEmail(userEmail);
 		joinInEntity.setCreatedOnDate(createdOnDate);
 		return joinInEntity;
+	}
+	
+	public static List<JoinInEntity> convertToListEntity(List<JoinInDTO> joinInDtos) {
+		final List<JoinInEntity> joinInEntities = new ArrayList<JoinInEntity>();
+		for(JoinInDTO joinInDTO : joinInDtos) {
+			joinInEntities.add(joinInDTO.convertToEntity());
+		}
+		return joinInEntities;
 	}
 }

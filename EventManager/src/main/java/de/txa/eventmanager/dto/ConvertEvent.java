@@ -8,11 +8,12 @@ import de.txa.eventmanager.entity.JoinInEntity;
 
 public class ConvertEvent {
 	public static EventDTO convertToEventDTO(EventEntity evententity) {
-		final EventDTO eventDto = new EventDTO(evententity.getEventName(),
+		final EventDTO eventDto = new EventDTO(evententity.getId(), evententity.getEventName(),
 				evententity.getEventContent(), evententity.getEventDate(),
 				evententity.getEventLocation(), evententity.getEventIcon());
 			eventDto.setId(evententity.getId());
 			eventDto.setHostEmail(evententity.getHostEmail());
+		eventDto.setInvites(convertToListJoinInDTO(evententity.getInvites()));
 		return eventDto;
 	}
 
@@ -24,17 +25,6 @@ public class ConvertEvent {
 		}
 		return eventDTOList;
 	}
-		
-	public static EventEntity convertToEventEntity(EventDTO eventDTO) {
-		final EventEntity eventEntity = new EventEntity();
-		eventEntity.setEventName(eventDTO.getEventName());
-		eventEntity.setEventContent(eventDTO.getEventContent());
-		eventEntity.setEventDate(eventDTO.getEventDate());
-		eventEntity.setEventLocation(eventDTO.getEventLocation());
-		eventEntity.setEventIcon(eventDTO.getEventIcon());
-		eventEntity.setHostEmail(eventDTO.getHostEmail());
-		return eventEntity;
-	}
 	
 	public static JoinInDTO convertToJoinInDTO(JoinInEntity joinInEntity){
 		return new JoinInDTO(joinInEntity.getId(), 
@@ -43,5 +33,13 @@ public class ConvertEvent {
 							joinInEntity.getCreatedOnDate(), 
 							joinInEntity.getUpdatedOnDate());
 		
+	}
+	
+	public static List<JoinInDTO> convertToListJoinInDTO(List<JoinInEntity> joinInEntities) {
+		final List<JoinInDTO> joinInDTOs = new ArrayList<JoinInDTO>();
+		for(JoinInEntity joinInEntity: joinInEntities) {
+			joinInDTOs.add(convertToJoinInDTO(joinInEntity));
+		}
+		return joinInDTOs;
 	}
 }

@@ -20,7 +20,7 @@ public class EventEntity extends BaseEntity{
 	private String hostEmail;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<JoinInEntity> members;
+	private List<JoinInEntity> invites;
 
 	public String getEventName() {
 		return eventName;
@@ -69,19 +69,19 @@ public class EventEntity extends BaseEntity{
 	public void setHostEmail(String hostEmail) {
 		this.hostEmail = hostEmail;
 	}
-
-	public List<JoinInEntity> getMembers() {
-		return members;
-	}
-
-	public void setMembers(List<JoinInEntity> members) {
-		this.members = members;
-	}
 	
+	public List<JoinInEntity> getInvites() {
+		return invites;
+	}
+
+	public void setInvites(List<JoinInEntity> invites) {
+		this.invites = invites;
+	}
+
 	public void addJoinIn(JoinInEntity joinInEntity) {
-		if(members == null) {
-			members = new ArrayList<JoinInEntity>();
+		if(invites == null) {
+			invites = new ArrayList<JoinInEntity>();
 		}
-		members.add(joinInEntity);
+		invites.add(joinInEntity);
 	}
 }

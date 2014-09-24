@@ -28,7 +28,7 @@ public class EventServiceImpl implements EventService {
 	
 	@Override
 	public void create(EventDTO eventDTO) {
-		eventDao.create(ConvertEvent.convertToEventEntity(eventDTO));
+		eventDao.create(eventDTO.convertToEventEntity());
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void update(EventDTO eventDTO) {
-		eventDao.update(ConvertEvent.convertToEventEntity(eventDTO));
+		eventDao.update(eventDTO.convertToEventEntity());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class EventServiceImpl implements EventService {
 		final List<String> members = new ArrayList<String>();
 		final EventEntity event = eventDao.findById(EventID, EventEntity.class);
 		if(event != null) {
-			final List<JoinInEntity> joinIn = event.getMembers();
+			final List<JoinInEntity> joinIn = event.getInvites();
 			for(JoinInEntity jn : joinIn) {
 				members.add(jn.getUserEmail());
 			}
@@ -79,7 +79,7 @@ public class EventServiceImpl implements EventService {
 		final List<String> members = new ArrayList<String>();
 		final EventEntity event = eventDao.findById(EventID, EventEntity.class);
 		if(event != null) {
-			final List<JoinInEntity> joinIn = event.getMembers();
+			final List<JoinInEntity> joinIn = event.getInvites();
 			for(JoinInEntity jn : joinIn) {
 				if(jn.getAccept()) 
 					members.add(jn.getUserEmail());
