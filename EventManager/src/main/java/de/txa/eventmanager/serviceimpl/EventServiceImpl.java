@@ -1,5 +1,6 @@
 package de.txa.eventmanager.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,14 +12,19 @@ import org.springframework.transaction.annotation.Transactional;
 import de.txa.eventmanager.dto.ConvertEvent;
 import de.txa.eventmanager.dto.EventDTO;
 import de.txa.eventmanager.entity.EventEntity;
+import de.txa.eventmanager.entity.JoinInEntity;
 import de.txa.eventmanager.service.EventDAO;
 import de.txa.eventmanager.service.EventService;
+import de.txa.eventmanager.service.JoinInDAO;
 
 @Component
 @Transactional("txEvent")
 public class EventServiceImpl implements EventService {
 	@Inject
 	private EventDAO eventDao;
+	
+	@Inject
+	private JoinInDAO joinInDAO;
 	
 	@Override
 	public void create(EventDTO eventDTO) {
@@ -46,12 +52,73 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public List<EventDTO> findByUserId(Long id) {
-		return ConvertEvent.convertToListEventDTO(eventDao.findByUserId(id));
+	public List<EventDTO> findByUserEmail(String userEmail) {
+		return ConvertEvent.convertToListEventDTO(eventDao.findByUserEmail(userEmail));
 	}
 
 	@Override
 	public List<EventDTO> findByDate(Date date) {
 		return ConvertEvent.convertToListEventDTO(eventDao.findByDate(date));
+	}
+
+	@Override
+	public List<String> getAllInviteMember(Long EventID) {
+		final List<String> members = new ArrayList<String>();
+		final EventEntity event = eventDao.findById(EventID, EventEntity.class);
+		if(event != null) {
+			final List<JoinInEntity> joinIn = event.getMembers();
+			for(JoinInEntity jn : joinIn) {
+				members.add(jn.getUserEmail());
+			}
+		}
+		return members;
+	}
+
+	@Override
+	public List<String> getAllAcceptedMember(Long EventID) {
+		final List<String> members = new ArrayList<String>();
+		final EventEntity event = eventDao.findById(EventID, EventEntity.class);
+		if(event != null) {
+			final List<JoinInEntity> joinIn = event.getMembers();
+			for(JoinInEntity jn : joinIn) {
+				if(jn.getAccept()) 
+					members.add(jn.getUserEmail());
+			}
+		}
+		return members;
+	}
+
+	@Override
+	public void inviteUserToEvent(String userEmail, Long EventId) {
+		if(eventDao.findInvite(userEmail, EventId) == null) {
+			final EventEntity event = eventDao.findById(EventId, EventEntity.class);
+			if(event != null) {
+				final JoinInEntity joinInEntity = new JoinInEntity();
+				joinInEntity.setAccept(false);
+				joinInEntity.setUpdatedOnDate(new Date());
+				joinInEntity.setUserEmail(userEmail);
+				event.addJoinIn(joinInEntity);
+				eventDao.update(event);
+			}
+		}
+	}
+
+	@Override
+	public void userAccepteInvite(String userEmail, Long EventId) {
+		final JoinInEntity joinInEntity = eventDao.findInvite(userEmail, EventId);
+		if(joinInEntity != null) {
+			joinInEntity.setAccept(true);
+			joinInDAO.update(joinInEntity);
+		}
+	}
+
+	@Override
+	public List<EventDTO> getAllInvitedEvent(String userEmail) {
+		return ConvertEvent.convertToListEventDTO(eventDao.getAllInvitedEvent(userEmail));
+	}
+
+	@Override
+	public List<EventDTO> getAllEventsOfUser(String userEmail) {
+		return ConvertEvent.convertToListEventDTO(eventDao.getAllEventsOfUser(userEmail));
 	}
 }

@@ -1,8 +1,12 @@
 package de.txa.eventmanager.entity;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class EventEntity extends BaseEntity{
@@ -14,6 +18,9 @@ public class EventEntity extends BaseEntity{
 	private String eventLocation;
 	private String eventIcon;
 	private String hostEmail;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<JoinInEntity> members;
 
 	public String getEventName() {
 		return eventName;
@@ -62,5 +69,19 @@ public class EventEntity extends BaseEntity{
 	public void setHostEmail(String hostEmail) {
 		this.hostEmail = hostEmail;
 	}
+
+	public List<JoinInEntity> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<JoinInEntity> members) {
+		this.members = members;
+	}
 	
+	public void addJoinIn(JoinInEntity joinInEntity) {
+		if(members == null) {
+			members = new ArrayList<JoinInEntity>();
+		}
+		members.add(joinInEntity);
+	}
 }

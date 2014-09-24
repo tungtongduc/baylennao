@@ -6,14 +6,14 @@ import javax.persistence.Entity;
 public class JoinInEntity extends BaseEntity{
 	
 	private static final long serialVersionUID = 1L;
-	private boolean accept;
+	private Boolean accept;
 	private String userEmail;
 	
-	public boolean isAccept() {
+	public Boolean getAccept() {
 		return accept;
 	}
 	
-	public void setAccept(boolean accept) {
+	public void setAccept(Boolean accept) {
 		this.accept = accept;
 	}
 
