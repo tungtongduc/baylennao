@@ -13,10 +13,9 @@ public interface EventService {
 	public EventDTO findByEventID(Long id);
 	public List<EventDTO> findByUserEmail(String userEmail);
 	public List<EventDTO> findByDate(Date date);
-	public List<String> getAllInviteMember(Long EventID);
+	public List<String> getAllInvitedMember(Long EventID);
 	public List<String> getAllAcceptedMember(Long EventID);
 	public void inviteUserToEvent(String userEmail, Long EventId);
-	public void userAccepteInvite(String userEmail, Long EventId);
-	public List<EventDTO> getAllInvitedEvent(String userEmail);
-	public List<EventDTO> getAllEventsOfUser(String userEmail);
+	public void acceptInvite(String userEmail, Long EventId);
+	public List<EventDTO> getAllInvites(String userEmail);
 }

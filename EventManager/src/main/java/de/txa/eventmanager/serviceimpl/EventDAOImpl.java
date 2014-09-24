@@ -55,16 +55,8 @@ public class EventDAOImpl extends BaseDAOImpl<EventEntity> implements EventDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<EventEntity> getAllInvitedEvent(String userEmail) {
+	public List<EventEntity> getAllInvites(String userEmail) {
 		Query q = em.createQuery("SELECT e FROM EventEntity e join e.members jn WHERE jn.userEmail=:userEmail");
-		q.setParameter("userEmail", userEmail);
-		return checkNullEventList(q.getResultList());
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<EventEntity> getAllEventsOfUser(String userEmail) {
-		Query q = em.createQuery("SELECT e FROM EventEntity e join e.members jn WHERE jn.userEmail=:userEmail and jn.accept=true");
 		q.setParameter("userEmail", userEmail);
 		return checkNullEventList(q.getResultList());
 	}

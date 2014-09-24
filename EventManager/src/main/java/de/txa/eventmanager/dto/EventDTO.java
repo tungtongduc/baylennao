@@ -1,6 +1,6 @@
 package de.txa.eventmanager.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class EventDTO {
 	

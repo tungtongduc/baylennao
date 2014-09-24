@@ -62,7 +62,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public List<String> getAllInviteMember(Long EventID) {
+	public List<String> getAllInvitedMember(Long EventID) {
 		final List<String> members = new ArrayList<String>();
 		final EventEntity event = eventDao.findById(EventID, EventEntity.class);
 		if(event != null) {
@@ -104,7 +104,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void userAccepteInvite(String userEmail, Long EventId) {
+	public void acceptInvite(String userEmail, Long EventId) {
 		final JoinInEntity joinInEntity = eventDao.findInvite(userEmail, EventId);
 		if(joinInEntity != null) {
 			joinInEntity.setAccept(true);
@@ -113,12 +113,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public List<EventDTO> getAllInvitedEvent(String userEmail) {
-		return ConvertEvent.convertToListEventDTO(eventDao.getAllInvitedEvent(userEmail));
-	}
-
-	@Override
-	public List<EventDTO> getAllEventsOfUser(String userEmail) {
-		return ConvertEvent.convertToListEventDTO(eventDao.getAllEventsOfUser(userEmail));
+	public List<EventDTO> getAllInvites(String userEmail) {
+		return ConvertEvent.convertToListEventDTO(eventDao.getAllInvites(userEmail));
 	}
 }
