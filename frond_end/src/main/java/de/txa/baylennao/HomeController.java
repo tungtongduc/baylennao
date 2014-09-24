@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import de.txa.eventmanager.service.EventService;
 import de.txa.usermanager.dto.UserDTO;
 import de.txa.usermanager.dto.UserDTOtoCreate;
-import de.txa.usermanager.security.LoginService;
 import de.txa.usermanager.service.UserService;
 
 /**
@@ -61,7 +60,6 @@ public class HomeController {
 		if(logoutSuccess != null) {
 			model.addAttribute("infoMessage", "logoutSuccess");
 		}
-			
 		return "index";
 	}
 	
@@ -122,24 +120,19 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register(Model model,
-			@RequestParam(value = "errorRegister", required = false) String errorRegister,
-			@RequestParam(value = "userExist", required = false) String userExist) {
- 
-		if(istLogin()) {
-			return "redirect:/?newRegister";
+	@RequestMapping(value="/profile/changepassword", method = RequestMethod.POST)
+	public String changePassword(Model model, 
+			@RequestParam(value = "old_password", required = true) String oldPassword,
+			@RequestParam(value = "new_password", required = true) String newPassword,
+			@RequestParam(value = "re_password", required = true) String rePassword){
+		if(newPassword.equals(rePassword)){
+			if(istLogin()){
+				if(userService.checkPassswordBeforeChange(oldPassword, auth.getName())){
+					return "redirect:/?changePasswordSuccess";
+				}
+			}
 		}
-
-		if (errorRegister != null) {
-			model.addAttribute("error", "Invalid Register data");
-		}
- 
-		if (userExist != null) {
-			model.addAttribute("error", "User email is existed. Choose another Email!");
-		}
-		
-		return "register";
+		return "redirect:/?changePasswordFailure";
 	}
 	
 	@RequestMapping(value = "/register/add", method = RequestMethod.POST)
@@ -164,22 +157,6 @@ public class HomeController {
 			}
 		}
 		return "redirect:/register?errorRegister";
-	}
-	
-	//TODO
-	@RequestMapping(value="/profile/changepassword", method = RequestMethod.POST)
-	public String changePassword(Model model, 
-			@RequestParam(value = "old_password", required = true) String oldPassword,
-			@RequestParam(value = "new_password", required = true) String newPassword,
-			@RequestParam(value = "re_password", required = true) String rePassword){
-		if(!newPassword.equals(rePassword)){
-			return "redirect:/?changePasswordFailure";
-		}
-		
-		if(istLogin()){
-			
-		}
-		return null;
 	}
 	
 	private boolean istLogin() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +33,9 @@ public class UserServiceImpl implements UserService{
 	public void update(UserDTO newUser) {
 		if(newUser.getId() != null) {
 			final UserEntity oldUser = userDao.findById(newUser.getId(), UserEntity.class);
-			userDao.update(setUpdateDateForEntity(newUser.convertToUserEntity(oldUser)));
+			if(oldUser != null) {
+				userDao.update(setUpdateDateForEntity(newUser.convertToUserEntity(oldUser)));
+			}
 		}
 	}
 
@@ -79,5 +82,17 @@ public class UserServiceImpl implements UserService{
 	private UserEntity setUpdateDateForEntity(UserEntity userEntity) {
 		userEntity.setUpdatedOnDate(new Date());
 		return userEntity;
+	}
+
+	@Override
+	public boolean checkPassswordBeforeChange(String password, String email) {
+		final UserEntity user = userDao.findByEmail(email);
+		if(user != null) {
+			final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			if(passwordEncoder.matches(password, user.getPassword())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

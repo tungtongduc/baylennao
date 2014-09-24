@@ -17,5 +17,5 @@ public interface UserService {
 	public List<UserDTO> getUserByQuery(String query);
 	public List<UserDTO> getAllFriends(long idFromUser);
 	public void addFriend(long idFromUser, long idFromFriend);
-	
+	public boolean checkPassswordBeforeChange(String password, String email);
 }
