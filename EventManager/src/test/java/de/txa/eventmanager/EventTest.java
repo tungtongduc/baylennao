@@ -23,7 +23,7 @@ public class EventTest {
 	@Inject
 	private EventService es;
 
-//	@Test
+	@Test
 	public void saveEvent() {
 		EventDTO event1 = new EventDTO("baylennao",
 				"moi ban tre nho mang theo co? va Wiskey",
@@ -35,10 +35,16 @@ public class EventTest {
 				"bay len nao la bay len nao",
 				"Matrix Berlin");
 		event2.setHostEmail("t@gmail.com");
-		event2.setEventDate(date);
+		event2.setEventDate(date);		
 		
 		es.create(event1);
 		es.create(event2);
+		
+		EventDTO e1 = es.findByEventName("baylennao").get(0);
+		EventDTO e2 = es.findByEventName("happy birthday").get(0);
+		
+		es.inviteUserToEvent("xa@gmail.com", e1.getId());
+		es.inviteUserToEvent("xa@gmail.com", e2.getId());
 	}
 	
 //	@Test
@@ -58,12 +64,13 @@ public class EventTest {
 //	@Test
 	public void findByDate(){
 		System.out.println("Event By Date start Finding......");
+		
 		List<EventDTO> allEventsOnDate = es.findByDate(date);
 		if(allEventsOnDate == null){
 			System.out.println("list ist null !!!!!!!!!!!!!!!!!");
 		}
 		for(EventDTO e : allEventsOnDate){
-			System.out.println("FFFFFFFFFFFFFFFFFF=======FFFFFFFFFFFFFFFFFF");
+			System.out.println(e.getEventName());
 		}
 	}
 	
@@ -82,10 +89,10 @@ public class EventTest {
 //		
 //	}
 //	
-//	@Test 
-//	public void acceptInvite(){
-//		
-//	}
+	@Test 
+	public void acceptInvite(){
+		es.acceptInvite("xa@gmail.com", Long.valueOf(1));
+	}
 	
 //	 @Test
 	 public void deleteEvent(){
