@@ -28,6 +28,7 @@ public class EventServiceImpl implements EventService {
 	
 	@Override
 	public void create(EventDTO eventDTO) {
+		eventDTO.setUpdateDate(new Date());
 		eventDao.create(eventDTO.convertToEventEntity());
 	}
 
@@ -38,6 +39,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void update(EventDTO eventDTO) {
+		eventDTO.setUpdateDate(new Date());
 		eventDao.update(eventDTO.convertToEventEntity());
 	}
 

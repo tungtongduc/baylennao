@@ -15,6 +15,9 @@ public class EventDTO {
 	private String eventIcon;
 	private String hostEmail;
 	private List<JoinInDTO> invites;
+	
+	private Date createdate;
+	private Date updateDate;
 
 	public EventDTO(){}
 	
@@ -100,6 +103,22 @@ public class EventDTO {
 		this.invites = invites;
 	}
 
+	public Date getCreatedate() {
+		return createdate;
+	}
+
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
 	public EventEntity convertToEventEntity() {
 		final EventEntity eventEntity = new EventEntity();
 		eventEntity.setId(id);
@@ -110,6 +129,7 @@ public class EventDTO {
 		eventEntity.setEventIcon(eventIcon);
 		eventEntity.setHostEmail(hostEmail);
 		eventEntity.setInvites(JoinInDTO.convertToListEntity(invites));
+		eventEntity.setUpdatedOnDate(updateDate);
 		return eventEntity;
 	}
 }

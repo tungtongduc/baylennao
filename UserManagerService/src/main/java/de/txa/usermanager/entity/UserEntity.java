@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -21,6 +22,8 @@ public class UserEntity extends BaseEntity{
 	private Date birthday;
 	private Long telNr;
 	private Boolean gender;
+	
+	@Column(unique = true)
 	private String email;
 	private UserRoll userRolle;
 	private String userIcon;

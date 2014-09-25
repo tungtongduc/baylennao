@@ -14,6 +14,8 @@ public class ConvertEvent {
 			eventDto.setId(evententity.getId());
 			eventDto.setHostEmail(evententity.getHostEmail());
 		eventDto.setInvites(convertToListJoinInDTO(evententity.getInvites()));
+		eventDto.setCreatedate(evententity.getCreatedOnDate());
+		eventDto.setUpdateDate(evententity.getUpdatedOnDate());
 		return eventDto;
 	}
 
