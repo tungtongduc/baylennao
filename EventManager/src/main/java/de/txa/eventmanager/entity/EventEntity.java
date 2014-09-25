@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,6 +21,7 @@ public class EventEntity extends BaseEntity{
 	private String hostEmail;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="event")
 	private List<JoinInEntity> invites;
 
 	public String getEventName() {

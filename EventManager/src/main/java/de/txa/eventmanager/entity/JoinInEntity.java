@@ -9,6 +9,7 @@ public class JoinInEntity extends BaseEntity{
 	private Boolean accept;
 	private String userEmail;
 	
+	
 	public Boolean getAccept() {
 		return accept;
 	}

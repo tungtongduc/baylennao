@@ -37,13 +37,14 @@ public class EventTest {
 		event2.setHostEmail("t@gmail.com");
 		event2.setEventDate(date);		
 		
-		es.inviteUserToEvent("t@gmail.com", event1.getId());
-		es.inviteUserToEvent("t@gmail.com", event2.getId());
-		es.inviteUserToEvent("xa@gmail.com", event1.getId());
-		es.inviteUserToEvent("xa@gmail.com", event2.getId());
-		
 		es.create(event1);
 		es.create(event2);
+		
+		EventDTO e1 = es.findByEventName("baylennao").get(0);
+		EventDTO e2 = es.findByEventName("happy birthday").get(0);
+		
+		es.inviteUserToEvent("xa@gmail.com", e1.getId());
+		es.inviteUserToEvent("xa@gmail.com", e2.getId());
 	}
 	
 //	@Test
@@ -88,10 +89,10 @@ public class EventTest {
 //		
 //	}
 //	
-//	@Test 
-//	public void acceptInvite(){
-//		
-//	}
+	@Test 
+	public void acceptInvite(){
+		es.acceptInvite("xa@gmail.com", Long.valueOf(1));
+	}
 	
 //	 @Test
 	 public void deleteEvent(){

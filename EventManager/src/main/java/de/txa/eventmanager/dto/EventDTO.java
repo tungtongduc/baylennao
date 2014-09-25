@@ -1,5 +1,6 @@
 package de.txa.eventmanager.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -101,6 +102,9 @@ public class EventDTO {
 	}
 
 	public EventEntity convertToEventEntity() {
+		if(invites == null){
+			invites = new ArrayList<JoinInDTO>();
+		}
 		final EventEntity eventEntity = new EventEntity();
 		eventEntity.setId(id);
 		eventEntity.setEventName(eventName);
