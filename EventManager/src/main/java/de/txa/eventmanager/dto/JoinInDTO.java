@@ -13,6 +13,7 @@ public class JoinInDTO {
 	private String userEmail;
 	private Date createdOnDate;
 	private Date updatedOnDate;
+	private EventDTO eventDto;
 
 	public JoinInDTO(Long id, Boolean accept, String userEmail,
 			Date createdOnDate, Date updatedOnDate) {
@@ -67,12 +68,21 @@ public class JoinInDTO {
 		this.updatedOnDate = updatedOnDate;
 	}
 	
+	public EventDTO getEventDto() {
+		return eventDto;
+	}
+
+	public void setEventDto(EventDTO eventDto) {
+		this.eventDto = eventDto;
+	}
+
 	public JoinInEntity convertToEntity() {
 		final JoinInEntity joinInEntity = new JoinInEntity();
 		joinInEntity.setId(id);
 		joinInEntity.setAccept(accept);
 		joinInEntity.setUserEmail(userEmail);
 		joinInEntity.setCreatedOnDate(createdOnDate);
+		joinInEntity.setEventEntity(eventDto.convertToEventEntity());
 		return joinInEntity;
 	}
 	

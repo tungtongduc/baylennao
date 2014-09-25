@@ -29,12 +29,13 @@ public class ConvertEvent {
 	}
 	
 	public static JoinInDTO convertToJoinInDTO(JoinInEntity joinInEntity){
-		return new JoinInDTO(joinInEntity.getId(), 
+		final JoinInDTO joinInDTO = new JoinInDTO(joinInEntity.getId(), 
 							joinInEntity.getAccept(), 
 							joinInEntity.getUserEmail(), 
 							joinInEntity.getCreatedOnDate(), 
 							joinInEntity.getUpdatedOnDate());
-		
+		joinInDTO.setEventDto(convertToEventDTO(joinInEntity.getEventEntity()));
+		return joinInDTO;
 	}
 	
 	public static List<JoinInDTO> convertToListJoinInDTO(List<JoinInEntity> joinInEntities) {

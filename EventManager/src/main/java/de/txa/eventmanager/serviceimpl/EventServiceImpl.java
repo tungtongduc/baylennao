@@ -92,7 +92,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void inviteUserToEvent(String userEmail, Long EventId) {
-		if(eventDao.findInvite(userEmail, EventId) == null) {
+		if(joinInDAO.findInvite(userEmail, EventId) == null) {
 			final EventEntity event = eventDao.findById(EventId, EventEntity.class);
 			if(event != null) {
 				final JoinInEntity joinInEntity = new JoinInEntity();
@@ -107,7 +107,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void acceptInvite(String userEmail, Long EventId) {
-		final JoinInEntity joinInEntity = eventDao.findInvite(userEmail, EventId);
+		final JoinInEntity joinInEntity = joinInDAO.findInvite(userEmail, EventId);
 		if(joinInEntity != null) {
 			joinInEntity.setAccept(true);
 			joinInDAO.update(joinInEntity);
@@ -116,6 +116,6 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public List<EventDTO> getAllInvites(String userEmail) {
-		return ConvertEvent.convertToListEventDTO(eventDao.getAllInvites(userEmail));
+		return ConvertEvent.convertToListEventDTO(joinInDAO.getAllInvites(userEmail));
 	}
 }
