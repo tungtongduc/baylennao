@@ -9,4 +9,6 @@ public interface JoinInDAO extends BaseDAO<JoinInEntity>{
 
 	public JoinInEntity findInvite(String userEmail, Long EventId);
 	public List<EventEntity> getAllInvites(String userEmail);
+	public List<String> getAllInvitedMember(Long eventId);
+	public List<String> getAllAcceptedMember(Long eventId, boolean isAccept);
 }

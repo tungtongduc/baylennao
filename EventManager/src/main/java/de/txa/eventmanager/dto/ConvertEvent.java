@@ -34,7 +34,6 @@ public class ConvertEvent {
 							joinInEntity.getUserEmail(), 
 							joinInEntity.getCreatedOnDate(), 
 							joinInEntity.getUpdatedOnDate());
-		joinInDTO.setEventDto(convertToEventDTO(joinInEntity.getEventEntity()));
 		return joinInDTO;
 	}
 	

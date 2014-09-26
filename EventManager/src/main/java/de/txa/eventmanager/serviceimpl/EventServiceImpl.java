@@ -1,6 +1,5 @@
 package de.txa.eventmanager.serviceimpl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,30 +63,13 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public List<String> getAllInvitedMember(Long EventID) {
-		final List<String> members = new ArrayList<String>();
-		final EventEntity event = eventDao.findById(EventID, EventEntity.class);
-		if(event != null) {
-			final List<JoinInEntity> joinIn = event.getInvites();
-			for(JoinInEntity jn : joinIn) {
-				members.add(jn.getUserEmail());
-			}
-		}
-		return members;
+	public List<String> getAllInvitedMember(Long eventID) {
+		return joinInDAO.getAllInvitedMember(eventID);
 	}
 
 	@Override
-	public List<String> getAllAcceptedMember(Long EventID) {
-		final List<String> members = new ArrayList<String>();
-		final EventEntity event = eventDao.findById(EventID, EventEntity.class);
-		if(event != null) {
-			final List<JoinInEntity> joinIn = event.getInvites();
-			for(JoinInEntity jn : joinIn) {
-				if(jn.getAccept()) 
-					members.add(jn.getUserEmail());
-			}
-		}
-		return members;
+	public List<String> getAllAcceptedMember(Long eventId, boolean isAccept) {
+		return joinInDAO.getAllAcceptedMember(eventId, isAccept);
 	}
 
 	@Override
@@ -96,26 +78,27 @@ public class EventServiceImpl implements EventService {
 			final EventEntity event = eventDao.findById(EventId, EventEntity.class);
 			if(event != null) {
 				final JoinInEntity joinInEntity = new JoinInEntity();
-				joinInEntity.setAccept(false);
 				joinInEntity.setUpdatedOnDate(new Date());
 				joinInEntity.setUserEmail(userEmail);
+				joinInEntity.setEventEntity(event);
 				event.addJoinIn(joinInEntity);
+				joinInDAO.create(joinInEntity);
 				eventDao.update(event);
 			}
 		}
 	}
 
 	@Override
-	public void acceptInvite(String userEmail, Long EventId) {
+	public void acceptInvite(String userEmail, Long EventId, boolean isAccept) {
 		final JoinInEntity joinInEntity = joinInDAO.findInvite(userEmail, EventId);
 		if(joinInEntity != null) {
-			joinInEntity.setAccept(true);
+			joinInEntity.setAccept(isAccept);
 			joinInDAO.update(joinInEntity);
 		}
 	}
 
 	@Override
-	public List<EventDTO> getAllInvites(String userEmail) {
+	public List<EventDTO> getAllInvitesFromUser(String userEmail) {
 		return ConvertEvent.convertToListEventDTO(joinInDAO.getAllInvites(userEmail));
 	}
 }

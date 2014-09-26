@@ -12,12 +12,12 @@ import de.txa.eventmanager.entity.EventEntity;
 import de.txa.eventmanager.entity.JoinInEntity;
 import de.txa.eventmanager.service.JoinInDAO;
 
+@SuppressWarnings("unchecked")
 @Component
 public class JoinInDAOImpl extends BaseDAOImpl<JoinInEntity> implements JoinInDAO{
 
 	private static final int FIRST_INDEX = 0;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public JoinInEntity findInvite(String userEmail, Long eventId) {
 		Query q = em.createQuery("SELECT jn FROM JoinInEntity jn WHERE jn.eventEntity.id=:eventId and jn.userEmail=:userEmail");
@@ -27,7 +27,6 @@ public class JoinInDAOImpl extends BaseDAOImpl<JoinInEntity> implements JoinInDA
 		return !CollectionUtils.isEmpty(joinInEntities) ? joinInEntities.get(FIRST_INDEX) : null;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<EventEntity> getAllInvites(String userEmail) {
 		Query q = em.createQuery("SELECT jn FROM JoinInEntity jn WHERE jn.userEmail=:userEmail");
@@ -38,5 +37,28 @@ public class JoinInDAOImpl extends BaseDAOImpl<JoinInEntity> implements JoinInDA
 			eventEntities.add(jn.getEventEntity());
 		}
 		return eventEntities;
+	}
+
+	@Override
+	public List<String> getAllInvitedMember(Long eventId) {
+		Query q = em.createQuery("SELECT jn FROM JoinInEntity jn WHERE jn.eventEntity.id=:eventId");
+		q.setParameter("eventId", eventId);
+		return getListMemberFromJoinInEntity(q.getResultList());
+	}
+
+	@Override
+	public List<String> getAllAcceptedMember(Long eventId, boolean isAccept) {
+		Query q = em.createQuery("SELECT jn FROM JoinInEntity jn WHERE jn.eventEntity.id=:eventId and jn.accept=:isAccept");
+		q.setParameter("eventId", eventId);
+		q.setParameter("isAccept", isAccept);
+		return getListMemberFromJoinInEntity(q.getResultList());
+	}
+	
+	private List<String> getListMemberFromJoinInEntity(List<JoinInEntity> joinInEntities) {
+		final List<String> members = new ArrayList<String>();
+		for(JoinInEntity jn : joinInEntities) {
+			members.add(jn.getUserEmail());
+		}
+		return members;
 	}
 }
