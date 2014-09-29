@@ -88,7 +88,7 @@ pageEncoding="UTF-8"%>
                             </a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-plus"></i> Create event</a>
+                            <a data-toggle="modal" href="#createEvent"><i class="fa fa-fw fa-plus"></i> Create event</a>
                         </li>
                         <li>
                             <a data-toggle="modal" href="#changePassword">
@@ -225,6 +225,9 @@ pageEncoding="UTF-8"%>
     </div>
     <!-- ***** register form ******** -->
     </c:if>
+
+
+    
     <c:if test="${pageContext.request.userPrincipal.name != null}">
     <!-- **** profile for User ***** -->
     <div class="modal" id="editProfile">

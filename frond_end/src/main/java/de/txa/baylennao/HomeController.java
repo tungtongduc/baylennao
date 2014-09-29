@@ -44,6 +44,15 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	public String user(Model model) {
+
+		if(istLogin()) {
+		    model.addAttribute("user", userService.findByEmail(auth.getName()));
+		}
+		return "userSeite";
+	}
+	
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
 	public String updateUser(Model model, UserDTO userDTO, BindingResult result) {
 		userService.update(userDTO);
